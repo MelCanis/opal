@@ -1,0 +1,39 @@
+@import "../utils"
+
+.button-1
+    +c($w)
+    +bg($d1)
+    +s
+    +r
+    +cp
+    +bdrn
+.button-2
+    +c($d1)
+    +bdr($d2)
+    +bg(transparent)
+    &:hover
+        +c($d1)
+        +bg($d2)
+    +s
+    +r
+    +cp
+
+.cancel
+    +p($b05 $b)
+    +fs($b075)
+    +c(+re)
+    +fw(400)
+    +bg(transparent)
+    +bdr($re)
+    +p($b05 $b)
+    +r
+    +c($re)
+    +cp
+    +s
+    +fs($b075)
+    +mt($b)
+    +o(.5)
+    &:hover
+        +c($w)
+        +bg($re)
+        +o(1)

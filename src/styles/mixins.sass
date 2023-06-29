@@ -1,0 +1,235 @@
+// Size
+=w($w)
+    width: $w
+
+=h($h)
+    height: $h
+    
+=wh($w, $h)
+    width: $w
+    height: $h
+=whs($v)
+    width: $v
+    height: $v
+=mnw($w)
+    min-width: $w
+=mnh($h)
+    min-height: $h
+=mxw($w)
+    max-width: $w
+=mxh($h)
+    max-height: $h
+=mnwh($w, $h)
+    min-width: $w
+    min-height: $h
+=mxwh($w, $h)
+    max-width: $w
+    max-height: $h
+=mnwhs($v)
+    min-width: $v
+    min-height: $v
+=mxwhs($v)
+    max-width: $v
+    max-height: $v
+=mmw($v, $v2)
+    min-width: $v
+    max-width: $v2
+=mmh($v, $v2)
+    min-height: $v
+    max-height: $v2
+
+// Basics
+=bg($bg)
+    background: $bg
+
+=c($c)
+    color: $c
+
+=bdr($color, $v: 1px)
+    border: $v solid $color
+=bdrt($color, $v: 1px)
+    border-top: $v solid $color
+=bdrb($color, $v: 1px)
+    border-bottom: $v solid $color
+=bdrl($color, $v: 1px)
+    border-left: $v solid $color
+=bdrr($color, $v: 1px)
+    border-right: $v solid $color
+=bdrrad($r)
+    border-radius: $r
+=bdrn
+    border: none
+=circ
+    +bdrrad(50%)
+=bs($value)
+    box-shadow: $value
+
+=ls($value)
+    list-style: $value
+
+
+=oh
+    overflow: hidden
+=oxh
+    overflow-x: hidden
+=oyh
+    overflow-y: hidden
+=oys
+    overflow-y: scroll
+
+=p($p)
+    padding: $p
+=pt($p)
+    padding-top: $p
+=pb($p)
+    padding-bottom: $p
+=pl($p)
+    padding-left: $p
+=pr($p)
+    padding-right: $p
+
+=m($m)
+    margin: $m
+=mt($m)
+    margin-top: $m
+=mb($m)
+    margin-bottom: $m
+=ml($m)
+    margin-left: $m
+=mr($m)
+    margin-right: $m
+
+
+// Font
+=fs($fs)
+    font-size: $fs
+=fw($value)
+    font-weight: $value
+=ff($x)
+    font-family: $x
+=ta($value)
+    text-align: $value
+=ls($v)
+    letter-spacing: $v
+
+// Position
+=pos($pos)
+    position: $pos
+=posa()
+    position: absolute
+=posr()
+    position: relative
+=posf()
+    position: fixed
+=poss()
+    position: sticky
+=t($t)
+    top: $t
+=l($l)
+    left: $l
+=r($r)
+    right: $r
+=b($b)
+    bottom: $b
+=tl($t, $l)
+    top: $t
+    left: $l
+=br($b, $r)
+    bottom: $b
+    right: $r
+=cen
+    +posa
+    +t(50%)
+    +l(50%)
+    transform: translate(-50%, -50%)
+=cenX
+    +l(50%)
+    transform: translateX(-50%)
+=cenY
+=bs($value)
+    box-shadow: $value
+=ls($value)
+    list-style: $value
+
+
+// Display
+=dn
+    display: none
+=db
+    display: block
+=df
+    display: flex
+=dg
+    display: grid
+
+
+// Flex
+=f($f)
+    flex: $f
+=z($z)
+    z-index: $z
+=fdr()
+    flex-direction: row
+=fdc()
+    flex-direction: column
+=aic()
+    align-items: center 
+=jcc()
+    justify-content: center
+=jcb()
+    justify-content: space-between
+=jca()
+    justify-content: space-around
+=jcs()
+    justify-content: flex-start
+=fwr
+    flex-wrap: wrap
+=cenc
+    +df
+    +jcc
+    +aic
+
+
+=cp
+    cursor: pointer
+=oe
+    white-space: nowrap
+    overflow: hidden
+    text-overflow: ellipsis
+
+=oh
+    overflow: hidden
+=oxh
+    overflow-x: hidden
+=oyh
+    overflow-y: hidden
+=oys
+    overflow-y: scroll
+
+=tr($x, $y)
+    transform: translate($x, $y)
+=tx($v)
+    transform: translateX($v)
+
+=ty($v)
+    transform: translateY($v)
+
+
+=o($v)
+    opacity: $v
+=trs($val)
+    transition: $val
+=noout()
+    &:focus
+        outline: none
+
+
+// Colors
+// =tp($v1, $v2)
+//     transparentize($v1, $v2)
+
+
+=reset
+    +m(0)
+    +b(0)
+    box-sizing: border-box

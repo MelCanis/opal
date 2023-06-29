@@ -1,0 +1,45 @@
+@import "../../../../styles/utils"
+
+.RealmSelection
+    +whs(100%)
+.realms
+    +cen
+    +df
+    +h(max-content)
+    @media (max-width: 800px)
+        // +fdc
+        +aic
+        align-content: center
+        +jcc
+        +fwr
+        +wh(100%, 80%)
+        transform: none
+        +t($b2)
+        +cenX
+        
+        overflow-y: scroll
+
+.realm-active
+    transform: scale(1.15)
+.realm-inactive
+    +o(.5)
+    transform: scale(.9)
+
+.realm-add
+    +c($d1)
+    +fs($b075)
+    +posa
+    +b($b4)
+    +cenX
+    +cp
+    +s
+    +bdr($l1)
+    +cenc
+    +bdrrad($b)
+    +p($b)
+    &:hover
+        +bg($l1)
+    .icon
+        +ml($b)
+        +whs($b075)
+        fill: $d1

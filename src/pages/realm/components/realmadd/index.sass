@@ -1,0 +1,117 @@
+@import '../../../../styles/utils'
+
+.RealmAdd
+    // +cen
+    +posr
+    +whs(100%)
+    +r
+    // +bdr($d2)
+    +p($b)
+    +df
+    +fdc
+    +aic
+
+    h5
+        +fs($b)
+        +ta(center)
+        +mb($b)
+
+.realm-input-container
+    +df
+    +fdc
+    +aic
+    +mb($b)
+    +posr
+    label
+        +c($d1)
+        +fs($b*.9)
+        +mt($b05)
+        +df
+        +aic
+        span
+            +c($d1)
+        .icon
+            fill: $d1
+            +mr($b05)
+    +pt($b2)
+    +bdrt($d2)
+    &:first-of-type
+        +pt($b)
+    &:last-of-type
+        +pb($b15)
+        +bdrb($d2)
+
+.realm-icon-input
+    +bdr(transparent)
+    +s
+    +cp
+    +posr
+    .internal
+        +posa
+        +cen
+        +whs(96%)
+        +circ
+        +bg($d2)
+    &:hover
+        // +bg($d2)
+        +bdr($d2)
+    +whs($b4*6)
+    +circ
+    // +mb($b * 3)
+    // +bs(0 $b05 $b $d15)
+    // +shd
+
+
+.realm-title-input
+    +noout
+    +bdrn
+    +bdr($d2)
+    +bg(transparent)
+    +s
+    +ta(center)
+    +fw(500)
+    +mnw($b4*6)
+    &:focus
+        // +ta(left)
+        +bg($d2)
+    +r
+    +p($b05)
+    +fs($b)
+
+.realm-create
+    // +mt($b)
+    +bdrn
+    +bg($a)
+    +c($a0)
+    +p($b $b2)
+    +fs($b)
+    +r
+    +fw(700)
+    +shd
+    +cp
+    +s
+    +w($b4*6)
+    &:hover
+        +c($w)
+
+.realm-cancel
+    +fw(400)
+    +bg(transparent)
+    +bdr($re)
+    +p($b05 $b)
+    +r
+    +c($re)
+    +cp
+    +s
+    +fs($b075)
+    +mt($b)
+    +o(.5)
+    &:hover
+        +c($w)
+        +bg($re)
+        +o(1)
+    +w($b4*2)
+
+.ImageUpload
+    +posa
+    +bg($l)

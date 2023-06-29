@@ -1,0 +1,37 @@
+@import "../../../styles/utils"
+
+.Editor
+    +p($b)
+    +pt(0)
+    // +evadeexo
+    +df
+    textarea
+        +noout
+        resize: none
+        +bg(transparent)
+        +p($b)
+        // +pt(0)
+        +fs($b)
+        +whs(100%)
+        @media (min-width: 1200px)
+            +w(70%)
+            +m(0 auto)
+        +bdr(transparent)
+        +s
+    textarea::placeholder
+        +c($d1)
+        animation: pulsate 1s
+.document
+    textarea
+        // +pt($b)
+        +bg($l1)
+        +r
+        +bdr($d2)
+
+@keyframes pulsate
+    0%
+        +o(0)
+    50%
+        +o(1)
+    100%
+        +o(0)

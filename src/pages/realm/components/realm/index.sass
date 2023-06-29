@@ -1,0 +1,35 @@
+@import "../../../../styles/utils"
+
+.Realm
+    +p($b)
+    +bdrrad($b)
+    +s
+    +cp
+    +df
+    +fdc
+    +jcc
+    +aic
+    +m($b)
+    +whs(fit-content)
+    // +bdr($d2)
+
+    .realm-icon
+        +bdrrad(50%)
+        +whs($b4*3)
+        @media (max-width: 800px)
+            +whs($b2*3)
+    div.realm-icon
+        +bg(linear-gradient($a1, $a))
+        +bdr($a)
+    img.realm-icon
+        object-fit: cover
+    .realm-title
+        +fw(400)
+        +fs($b)
+        +c($d1)
+        +mt($b*.8)
+
+    &:hover
+        .realm-title
+            +c($d)
+        +bg($l1)

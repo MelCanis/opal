@@ -1,0 +1,41 @@
+@import "../../styles/utils"
+
+.Sidebar
+    +posa
+    +z(2)
+    +h(100%)
+    +p($b $b05)
+    +df
+    +fdc
+    +jcb
+    .top, .bottom
+        +df
+        +fdc
+        +aic
+    .top
+        .icon, .glow-cont
+            +mb($b)
+    .bottom
+        .icon, .glow-cont
+            +mt($b)
+    .icon
+        +whs($b15)
+        +cp
+    .icon-accent
+        +c($a)
+        fill: $a
+    .icon-smaller
+        +mt($b*.5)
+        +whs($b*1.25)
+    .glow-cont
+        +posr
+        .icon
+            +m(0)
+        .glow
+            +bs(0 0 $b $a)
+            +cen
+            +whs($b075)
+            +r
+        .glow-s
+            +tl($b*.62, $b*.62)
+            +whs($b05)

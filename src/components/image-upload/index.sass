@@ -1,0 +1,28 @@
+@import "../../styles/utils"
+
+.ImageUpload
+    +bdr($d2)
+    +shd
+    +r
+    +p($b05)
+    +df
+    +fdc
+    .imageupload-file, .imageupload-cancel
+        +mt($b05)
+    .imageupload-file, .imageupload-cancel, .imageupload-link, input, button
+        +p($b025)
+        +fs($b075)
+    // button
+    //     +df
+    //     +jcc
+    //     +aic
+    hr
+        +bdrn
+        +bdrb($d2)
+        +m($b05)
+        +mb(-$b * .1)
+
+.imageupload-link button
+    +p($b025 $b05)
+    +ml($b05)
+    +bg($a)

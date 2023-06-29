@@ -1,0 +1,69 @@
+@import "../../styles/utils"
+
+.Item
+    +bdrrad($b)
+    +bdr($d2)
+    +p($b)
+    +m($b)
+    +whs(fit-content)
+    +mxw($b4*8)
+    +s
+    +cp
+    +bg($l1)
+    
+    .item-top
+        +df
+        +aic
+        +jcb
+        .left, .right
+            +df
+            +aic
+        .right
+            +s
+            +o(0)
+            .icon
+                +whs($b15)
+                +r
+                +p($b025)
+                +bdr(transparent)
+                &:hover
+                    // +bg($d2)
+                    +bdr($d2)
+        .title
+            font-style: italic
+            +fw(700)
+            +fs($b)
+        .item-icon
+            +whs($b*1.25)
+            +mr($b05)
+    .with-icon
+        +mb($b025)
+    .item-content
+        +c($d1)
+    .item-icon
+        +whs($b2)
+
+    .item-title
+        +ta(center)
+        font-style: italic
+        +fw(700)
+        +fs($b)
+        +mxw($b4*2)
+
+    &:hover
+        transform: scale(1.09)
+        .right
+            +o(1)
+    &:active
+        +trs(.1s)
+        transform: scale(1)
+        .right
+            +trs(.1s)
+            +o(0)
+.no-content
+    +df
+    +fdc
+    +aic
+    +jcc
+    .item-title
+        +mt($b025)

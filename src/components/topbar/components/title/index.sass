@@ -1,0 +1,26 @@
+@import "../../../../styles/utils"
+
+.Title
+    +r
+    +bdr(transparent)
+    +bg(transparent)
+    +p($b025)
+    +mt(-$b025)
+    +ml(-$b05)
+    +noout
+    +s
+
+    +fs($b075)
+    +fw(800)
+    font-style: italic
+
+    &::placeholder
+        +c($d1)
+        +fw(600)
+        font-style: italic
+    &:focus
+        +fw(600)
+        +bdr($d2)
+        +bg($l1)
+        +p($b025 $b05)
+        font-style: normal
