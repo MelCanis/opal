@@ -1,117 +1,156 @@
 @import '../../../../styles/utils'
 
 .RealmAdd
-    // +cen
     +posr
     +whs(100%)
     +r
-    // +bdr($d2)
-    +p($b)
+    +p($b4)
     +df
     +fdc
     +aic
+    +jcb
 
+    .opal-background
+        fill: $a
+        +mnwhs($b)
+
+    .realmadd-input
+        +bdr($l0)
+        // +bg($l0)
+        +p($b2 0)
+        +m($b 0)
+        +r
+        box-shadow: 0 $b05 $b transparentize($d2, .75)
+        // +shd0
+    .realmadd-foot
+        +df
+        +fdc
+        +aic
     h5
-        +fs($b)
+        +fs($b15)
         +ta(center)
-        +mb($b)
+        +c($d05)
+    h6
+        +fs($b)
+        +fw(400)
+        +c($d1)
 
 .realm-input-container
     +df
     +fdc
     +aic
-    +mb($b)
     +posr
+    +mb($b15)
     label
-        +c($d1)
-        +fs($b*.9)
-        +mt($b05)
         +df
         +aic
+        +fs($b*.75)
+        +c($d1)
+        +mt($b)
         span
             +c($d1)
         .icon
             fill: $d1
             +mr($b05)
-    +pt($b2)
-    +bdrt($d2)
-    &:first-of-type
-        +pt($b)
     &:last-of-type
-        +pb($b15)
-        +bdrb($d2)
+        +mb(0)
+        // +bg(blue)
 
 .realm-icon-input
     +bdr(transparent)
     +s
     +cp
     +posr
-    .internal
-        +posa
-        +cen
-        +whs(96%)
-        +circ
-        +bg($d2)
-    &:hover
-        // +bg($d2)
-        +bdr($d2)
-    +whs($b4*6)
+    +cenc
+    // +shd0
+    +bg($l)
+    box-shadow: 0 $b05 $b05 transparentize($d2, .75)
+    +o(0.75)
+    +bdr($l1)
+    +whs($b4*2)
     +circ
-    // +mb($b * 3)
-    // +bs(0 $b05 $b $d15)
-    // +shd
-
+    svg
+        fill: $d2
+        +whs($b2)
+    &:hover
+        +o(1)
 
 .realm-title-input
     +noout
-    +bdrn
-    +bdr($d2)
+    +bdrt
+    // +bdrb($d2)
     +bg(transparent)
+    +bg(transparentize($l2, .75))
+    +c($d1)
     +s
+    // +r
     +ta(center)
     +fw(500)
-    +mnw($b4*6)
+    &::placeholder
+        +c($d15)
+    // +mnw($b4*5)
+    // +bg(transparentize($l0, .75))
+    // box-shadow: 0 $b05 $b05 transparentize($d2, .75)
     &:focus
-        // +ta(left)
-        +bg($d2)
-    +r
+        +c($d)
+        // +bdr($l2)
+        // +bdrb($a1)
+        // +bg($l0)
     +p($b05)
     +fs($b)
 
 .realm-create
-    // +mt($b)
-    +bdrn
-    +bg($a)
-    +c($a0)
-    +p($b $b2)
+    +df
+    +jcb
+    +aic
+    svg
+        +s
+        +whs($b075)
+        fill: $d1
+        +mr($b05)
+    +bdr($d2)
+    // +bdrt
+    +bg(transparent)
+    +c($d1)
+    +p($b05 $b2)
+    +pl($b2*.9)
     +fs($b)
     +r
     +fw(700)
-    +shd
+    // +shd
+    // box-shadow: 0 $b05 $b05 transparentize($d2, .75)
     +cp
     +s
-    +w($b4*6)
+    // +w($b4*3)
     &:hover
-        +c($w)
+        +bdr($a)
+        +c($a)
+        svg
+            fill: $a
 
 .realm-cancel
+    +df
+    +jcb
+    +aic
+    svg
+        fill: $re
+        +mr($b05)
+    +whs(fit-content)
     +fw(400)
     +bg(transparent)
-    +bdr($re)
+    +bdrt
     +p($b05 $b)
+    +pl($b075)
     +r
     +c($re)
     +cp
     +s
     +fs($b075)
-    +mt($b)
-    +o(.5)
+    +mt($b05)
+    +o(.25)
     &:hover
-        +c($w)
-        +bg($re)
-        +o(1)
-    +w($b4*2)
-
+        +bdr($re)
+        +o(.75)
 .ImageUpload
     +posa
     +bg($l)

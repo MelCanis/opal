@@ -7,9 +7,18 @@
     +m($b)
     +whs(fit-content)
     +mxw($b4*8)
+    // +mxh($b4*6)
     +s
     +cp
     +bg($l1)
+    +shd0
+
+    .child
+        +shd1
+        +m($b05)
+        +mxw($b4*2)
+        .item-content
+            +oe
     
     .item-top
         +df
@@ -39,7 +48,17 @@
     .with-icon
         +mb($b025)
     .item-content
+        white-space: pre-wrap
         +c($d1)
+    .item-children
+        +df
+        +fwr
+        +jca
+        +mxh($b4*5)
+        // +oh
+        +pb($b)
+        align-items: center
+        overflow-y: scroll
     .item-icon
         +whs($b2)
 
@@ -51,6 +70,7 @@
         +mxw($b4*2)
 
     &:hover
+        +shd1
         transform: scale(1.09)
         .right
             +o(1)

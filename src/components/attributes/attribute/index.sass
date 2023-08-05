@@ -1,0 +1,101 @@
+@import "../../../styles/utils"
+
+.attribute
+    +w(100%)
+    
+    +r
+    +m($b025 0)
+    +df
+    +aic
+    +jcb
+    +posr
+
+    &:hover
+        // +bdr($d15)
+        .attribute-title textarea, .attribute-content textarea, .attribute-title input, .attribute-content input
+            +bdr($d2)
+        .icon
+            +o(1)
+        
+    .attribute-title, .attribute-content
+        +h($b2)
+        +r
+        +s
+        +bdr(transparent)
+        +posr
+
+    .attribute-title
+        +mr($b05)
+        +f(1)
+        +df
+        +aic
+        &:not(.template-attribute-title)
+            input:focus
+                +posr
+                +w($b4*2.5)
+
+    .attribute-content
+        +f(1.75)
+        textarea, input
+            +fw(300)
+            +bg($l1)
+            &::-webkit-outer-spin-button,
+            &::-webkit-inner-spin-button
+                -webkit-appearance: none
+                margin: 0
+
+    input, textarea
+        +noout
+        resize: none
+
+        +whs(100%)
+        // +w()
+        +posr
+        +bg(transparent)
+        +bdr(transparent)
+        +c($d1)
+        +r
+        +s
+        +p(0 $b*.25)
+        +fs($b*.9)
+        
+        +oe
+        &::-webkit-scrollbar
+            +dn
+        &::placeholder
+            font-style: italic
+            +c($d2)
+    textarea
+        +pt($b*.25)
+        &:focus
+            +bdr($d2)
+            +bg($l1)
+            +shd
+            white-space: normal
+            overflow: scroll
+            +posr
+            +z(2)
+            +h($b4*1.5)
+            // +posa
+            // +t(0)
+            // +l($b2)
+            // +whs(200%)
+            // +z(5)
+            // +wh($b2*6, $b2*4)
+            // text-overflow: clip
+        
+        
+    // .attribute-title-textarea:focus
+    //     +l($b2*.75)
+    .icon
+        fill: $d2
+        
+    .attribute-type
+        +mnwhs($b)
+        +mr($b025)
+        +cp
+        +r
+        +s
+        
+        &:hover
+            +bg($d2)

@@ -1,23 +1,28 @@
 @import "../../styles/utils"
 
 .Attributes
-    +p($b )
-    +f(.25)
+    +p($b)
+    +f(.5)
     +df
     +fdc
     +aic
     +posr
-    +mnw($b4*5)
+    // overflow-y: scroll
+    +mnw($b4*4.5)
     
-    +mxw(30%)
-    @media (min-width: 800px)
-        +mxw(unset)
-        +f(.5)
+    // +mxw(30%)
+    // @media (min-width: 800px)
+    //     +mxw(unset)
+    //     +f(.5)
     &:hover
-        .attributes-add
-            +df
         .attributes-background
             +o(1)
+        .attributes-title
+            +h(0)
+        .attributes-add
+            +df
+        .attributes-divider
+            +db
         .icon
             fill: $d1
         textarea::placeholder
@@ -33,6 +38,13 @@
     +o(0)
     +s
 
+.attributes-header
+    text-align: left
+    // +bg(orange)
+    // +fs($b*1)
+    +w(100%)
+    +c($d1)
+
 .icon-input
     +p($b)
     +bdr(transparent)
@@ -45,8 +57,9 @@
     +df
     +aic
     +fdc
+    // +dn
     .icon-input-icon
-        +whs($b4*4)
+        +whs($b4*2)
         +circ
         +bg($d2)
         +bg(url("https://wallpapers-clan.com/wp-content/uploads/2022/02/naruto-pfp-1.jpg"))
@@ -67,28 +80,35 @@
         +s
         +dn
 
+
 .attributes
     +w(100%)
     +posr
     +mt($b05)
 
 .attributes-title
+    // +dn
     +fw(800)
     font-style: italic
-    +fs($b2*1.25)
+    +fs($b2*.75)
+    +h($b2)
+    +s
 
 .attributes-add
     +w(100%)
+    +h($b2)
     +df
     +dn
     +jcb
+    +aic
     +r
+    +fs($b*.9)
     +p($b05)
     +cp
     +s
     +bdr(transparent)
     +posr
-    +mt($b05)
+    +mt($b025)
     span
         +s
         +c($d15)
@@ -97,96 +117,14 @@
         span
             +c($d1)
 
-hr
+.attributes-divider
+    +dn
     +w(100%)
     +bdrn
     +bdrb($d15)
-    +m($b 0)
-
-.attribute
-    +w(100%)
-    +h($b2*1.25)
-    // +bg($l2)
-    // +p($b025)
-    // +bdr(transparent)
-    +r
-    +m($b025 0)
-    +df
-    +aic
-    +jcb
+    +mt($b)
     +posr
+    +z(1)
 
-    &:hover
-        // +bdr($d15)
-        .attribute-title, .attribute-content
-            +bdr($d2)
-        .icon
-            +o(1)
-        
-    .attribute-title, .attribute-content
-        +h(100%)
-        +r
-        +s
-        +bdr(transparent)
-
-    .attribute-title
-        +posr
-        +pl($b025)
-        +mr($b05)
-        +f(1)
-        +df
-        +aic
-        textarea
-            // font-style: italic
-    .attribute-content
-        +f(2)
-        textarea
-            +fw(300)
-        +bg($l1)
-
-    textarea
-        +whs(100%)
-        +noout
-        +bg(transparent)
-        +bdr(transparent)
-        +c($d1)
-        +p($b025 $b05)
-        +r
-        +s
-        +fs($b * 1.25)
-        resize: none
-        
-        &:focus
-            // +bdr($d2)
-            // +shd
-        
-        &::-webkit-scrollbar
-            +dn
-        &::placeholder
-            font-style: italic
-            +c($d2)
-    .icon
-        // +dn
-        // +o(0)
-        // +cp
-        // +r
-        // +s
-        // +bdr(transparent)
-        fill: $d2
-        
-    .attribute-type
-        +whs($b15)
-        +p($b025)
-        +cp
-        +r
-        +s
-        
-        &:hover
-            +bg($d2)
-        // +posa
-
-        // +t(0)
-        // +l($b)
-        // +cenY
-        // +dn
-        // +t($b4)
+.template-attributes
+    +p(0)

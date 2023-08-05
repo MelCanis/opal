@@ -1,4 +1,6 @@
 import Attributes from "./components/attributes"
+import Drawer from "./components/drawer"
+import Search from "./components/search"
 import Sidebar from "./components/sidebar"
 import Topbar from "./components/topbar"
 import Collection from "./pages/display/collection"
@@ -10,13 +12,15 @@ function App() {
     <>
     <div className="exo">
       <Sidebar />
-      <Topbar />
+      {/* <Topbar /> */}
     </div>
     <div className="main">
-      {/* <RealmDisplay /> */}
-      <Attributes />
+      <RealmDisplay />
+      {/* <Attributes /> */}
+      {/* <Drawer /> */}
       {/* <Collection /> */}
-      <Editor />
+      {/* <Editor /> */}
+      {/* <Search /> */}
     </div>
     </>
   )

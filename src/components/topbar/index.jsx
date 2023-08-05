@@ -1,4 +1,5 @@
 import { EyeIcon, FilterIcon, MoreIcon } from "../../assets/icons";
+import Path from "./components/path";
 import Title from "./components/title";
 import "./index.sass";
 
@@ -7,10 +8,11 @@ export default function Topbar () {
         <div className="Topbar">
             <div className="left">
                 <Title />
+                <Path />
             </div>
             <div className="right">
-                <FilterIcon />
-                <EyeIcon />
+                {/* <FilterIcon />
+                <EyeIcon /> */}
                 <MoreIcon />
             </div>
         </div>

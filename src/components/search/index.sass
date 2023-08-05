@@ -1,0 +1,58 @@
+@import "../../styles/utils"
+
+.Search
+    .search-panel
+        +posf
+        +z(20)
+        +t(10%)
+        +cenX
+        +w(75%)
+        +h(fit-content)
+        +mxh(75%)
+        +bg($l)
+        +p($b)
+        +shd
+        +r
+    
+    .search-lay
+        +posf
+        +t(0)
+        +l(0)
+        +whs(100%)
+        +bg(transparentize($d, .9))
+    .searchbar
+        +noout
+        +bdrn
+        +r
+        +bg(transparentize($l1, .75))
+        +p($b05)
+        // +fw(300)
+        +fs($b*.9)
+        +w(100%)
+        &::placeholder
+            +c($d1)
+    .search-options
+        +mt($b)
+
+.SearchOption
+    +df
+    +aic
+    +fs($b*.9)
+    +p($b05)
+    +bdrt
+    +r
+    +s
+    +cp
+    +c($d1)
+    &:hover
+        +bdr($d2)
+        .searchoption-title
+            +c($d)
+    .searchoption-icon
+        +whs($b*1.5)
+        +bg($d2)
+        +r
+        +mr($b075)
+    .searchoption-title
+        +s
+        +c($d1)

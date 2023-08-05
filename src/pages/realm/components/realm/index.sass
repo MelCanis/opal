@@ -1,7 +1,7 @@
 @import "../../../../styles/utils"
 
 .Realm
-    +p($b)
+    +p($b15)
     +bdrrad($b)
     +s
     +cp
@@ -11,11 +11,15 @@
     +aic
     +m($b)
     +whs(fit-content)
+    +bg($l)
+    box-shadow: 0 0 $b05 transparentize($d1, .9)
+    
     // +bdr($d2)
 
     .realm-icon
         +bdrrad(50%)
-        +whs($b4*3)
+        +whs($b4*2)
+        box-shadow: 0 0 $b05 transparentize($d1, .75)
         @media (max-width: 800px)
             +whs($b2*3)
     div.realm-icon
@@ -31,5 +35,8 @@
 
     &:hover
         .realm-title
-            +c($d)
-        +bg($l1)
+            // +c($d)
+        // +bg($l0)
+        +bs(none)
+        // .realmselection-head svg
+        //     fill: $a

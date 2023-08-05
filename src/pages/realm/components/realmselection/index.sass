@@ -2,20 +2,57 @@
 
 .RealmSelection
     +whs(100%)
+    +posr
+
+.realmselection-head
+    +df
+    +fdc
+    +aic
+    +whs(fit-content)
+    +posa
+    +cenX
+    +t($b4)
+    +c($d)
+    +fw(500)
+    fill: $d1
+    svg
+        // +whs($b)
+        // fill: $a
+        transform: scale(1.5)
+    g
+        // +whs($b4)
+        // transform: none
+    // +whs($b)
+    h5
+        +fs($b)
+        +mt($b05)
+        +fw(900)
+        +c($d1)
+
 .realms
     +cen
+    // +t(45%)
     +df
+    +w(80%)
+    +r
+    // +h(60%)
+    align-content: center
+    +jcc
+    +aic
+    +fwr
     +h(max-content)
+    // +bg($l0)
+    // +r
     @media (max-width: 800px)
+        +w(100%)
+        // border-radius: 0
         // +fdc
-        +aic
-        align-content: center
-        +jcc
-        +fwr
-        +wh(100%, 80%)
-        transform: none
-        +t($b2)
-        +cenX
+        // +mnw(80%)
+        // +mxh(50%)
+        // +wh(100%, 80%)
+        // transform: none
+        // +t($b2)
+        // +cenX
         
         overflow-y: scroll
 
@@ -29,17 +66,29 @@
     +c($d1)
     +fs($b075)
     +posa
+    +whs(fit-content)
     +b($b4)
+    right: $b4
     +cenX
     +cp
     +s
     +bdr($l1)
-    +cenc
+    // +cenc
     +bdrrad($b)
-    +p($b)
+    +p($b05 $b)
+    +df
+    +aic
+    box-shadow: 0 $b05 $b05 transparentize($d2, .9)
     &:hover
-        +bg($l1)
+        +bg($l0)
     .icon
         +ml($b)
         +whs($b075)
         fill: $d1
+
+.realmselection-open
+    +posa
+    +cenX
+    +b($b4*3)
+    +c($d1)
+    +o(0)

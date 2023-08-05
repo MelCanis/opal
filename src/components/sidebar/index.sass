@@ -18,20 +18,44 @@
     .bottom
         .icon, .glow-cont
             +mt($b)
+    $iconsize: $b*1.5
     .icon
-        +whs($b15)
+        +whs($iconsize)
         +cp
+        fill: $d
+    .icon-inactive
+        path
+            +s
+            fill: $d1
+        &:hover
+            path
+                fill: $d    
     .icon-accent
         +c($a)
         fill: $a
     .icon-smaller
         +mt($b*.5)
-        +whs($b*1.25)
+        +whs($iconsize*.85)
+    .icon-even-smaller
+        +mt($b*.75)
+        +whs($iconsize*.75)
+    .opal-icon
+        +posr
+        right: $b*.05
+    .search-icon
+        +s
+        +o(.75)
+        &:hover
+            +o(1)
     .glow-cont
         +posr
         .icon
             +m(0)
+            +posr
+            +z(2)
         .glow
+            +posr
+            +z(1)
             +bs(0 0 $b $a)
             +cen
             +whs($b075)

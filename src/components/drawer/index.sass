@@ -1,0 +1,43 @@
+@import "../../styles/utils"
+
+.Drawer
+    +f(.25)
+    +mxw(25%)
+    +h(100%)
+    +bg($l1)
+    +posr
+    +p($b05)
+    overflow-y: scroll
+    .empty-drawer-icon
+        +cen
+        +whs($b2)
+        path
+            fill: $l2
+
+.DrawerItem
+    +fs($b075)
+    +p($b05)
+    +mb($b05)
+    +s
+    +bdrt
+    +r
+    +cp
+    +df
+    +aic
+    +w(100%)
+    &:hover
+        +bdr($l2)
+        .draweritem-title
+            +c($d)
+    
+    .draweritem-icon
+        +mnwhs($b*1.25)
+        +whs($b*1.25)
+        +r
+        +bg($l2)
+        +mr($b05)
+    .draweritem-title
+        +oe
+        font-style: italic
+        +c($d1)
+        +s

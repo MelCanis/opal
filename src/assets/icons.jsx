@@ -1,7 +1,9 @@
 import opal96 from "./opal-96.png";
 import Ts from "./ts.svg";
+import OpalSVG from "./opalsvg"
+import RealmSVG from "./realmsvg";
 import pad from "./pad.png";
-import { BsDoorClosedFill, BsDoorOpenFill, BsGearWideConnected, BsThreeDots, BsCheckCircleFill, BsPlusLg, BsXCircleFill, BsFillTrashFill, BsCloudUpload } from "react-icons/bs";
+import { BsDoorClosedFill, BsDoorOpenFill, BsGearWideConnected, BsThreeDots, BsCheckCircleFill, BsPlusLg, BsXCircleFill, BsFillTrashFill, BsCloudUpload, BsGridFill } from "react-icons/bs";
 import { RiHome2Fill, RiBook2Fill, RiArrowLeftSLine } from "react-icons/ri";
 import { MdImage, MdNumbers } from "react-icons/md";
 import { IoDocumentText } from "react-icons/io5";
@@ -13,15 +15,17 @@ import { RxDragHandleDots1 } from "react-icons/rx";
 
 const newClass = x => x ? "icon " + x : "icon";
 
+
 const
-    OpalIcon = props => <img src={opal96} {...props} className={newClass(props.className)}/>,
-    RealmIcon = props => <img {...props} className={newClass(props.className)} src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAGAAAABgCAYAAADimHc4AAAACXBIWXMAAAsTAAALEwEAmpwYAAACyklEQVR4nO2dTVLcMBCFlVSSwzhV2Qyafru5UliEHCBQOCfIz5lYcAh+jgBk45QqLFgAkTzt6Vb7fVXa2jPvtay2WpZSIoQQQohfhmH4ICLfAdwAmNjwogYicg1gLJqpGVAuSNHRGnijpgGMfDQbcKtmwGO34qMH9RqIyJWaAXwEYU7wnasZUAaUYgJ7AmwGYUIIIeR/ADhdQbr6zW0k7Ha7dwAuHIg0LdQu3Wc32+12EJE7B2JNmk1E7kXkU+oBAMfWgkG/fU4d8QbAr0DR/yN1SDHhBMCDtYCY38pv/1L+S+qVnPNRx5G/SRGwFhIzW4qC1R9E5X1pwELQgEYhtKEBjUJoQwMahdCGBjzyXCVNtWa6533XMAiPNTXT4cn6I43SXu19wxvwtKb8mrB4XrDxAPeNbcCe649uD3BfGtDDYB0eVAqxwFhBAxrTRtWxIrwBtRGLSiFeSC+v5/6+8AbURiyMJs/CG1AbsVA2QLvndYu2sFAeK2jAcgZUvVfQAPuewkdQgQYshLawojzLaTVbezAONLieL329btFOQwflWc7a63WL1bw8og+u3uflQQNsBQMNoAFdAaMeoF1f6BYYGaBdX3CH1awkjOoL7rCalYTyC2C3WM1KggbYCgEaQANcYDUrCfaAZiFGzTWkNKBRiEF5DSnT0EYhDFdZxK4HeM9uhhXUA1wbEB4aYAwNWKkBEn21Qy0tg6Ho5vcm36a5Y0/BxrlpqNW3ae7QfiGCct6+hnqA67wd0dNV73k7aMA/aMBCsAcYQwOcGgDnLUWg5037cs5HqWPeishXAH+shcR+21ae9LhtZdkz9LcDASeNJiI/U09w62JDcs4fI27eDeDB/ebdm83mPbevN0REzhxE6rRwO7XUmBBCyMrgecJoeWnjecLw0XieMGwN4HnCMDSA5wnD/BHE84RhE/nxFnYRQgghKSB/AReCJe2eZoIUAAAAAElFTkSuQmCC" />,
+    OpalIcon = props => <OpalSVG {...props} className={newClass(props.className)}/>,
+    RealmIcon = props => <RealmSVG {...props} className={newClass(props.className)}/>,
     ThoughtspaceIcon = props => <img {...props} className={newClass(props.className)} src={Ts} />,
     WarpIcon = props => <img src={pad} {...props} className={newClass(props.className)}/>,
     HomeIcon = props => <RiHome2Fill {...props} className={newClass(props.className)}/>,
     GearIcon = props => <BsGearWideConnected {...props} className={newClass(props.className)}/>,
     PlusIcon = props => <HiPlusCircle {...props} className={newClass(props.className)}/>,
     Plus2Icon = props => <BsPlusLg {...props} className={newClass(props.className)}/>,
+    GridIcon = props => <BsGridFill {...props} className={newClass(props.className)}/>,
     DoorIcon = props => <BsDoorClosedFill {...props} className={newClass(props.className)}/>,
     DoorOpenIcon = props => <BsDoorOpenFill {...props} className={newClass(props.className)}/>,
     BookIcon = props => <RiBook2Fill {...props} className={newClass(props.className)}/>,
@@ -51,7 +55,8 @@ export {
     OpalIcon,
     RealmIcon,
     WarpIcon,
-    ThoughtspaceIcon, 
+    ThoughtspaceIcon,
+    GridIcon,
     DoorIcon,
     DoorOpenIcon,
     HomeIcon,
