@@ -5,11 +5,12 @@
     +bdrt
     +bg(transparent)
     +p($b025)
-    +mnw($b4*1.5)
+    +mnw($b2)
     // +mt(-$b025)
     +ml(-$b05)
     +noout
     +s
+    // +oh
 
     +fs($b075)
     +fw(800)
@@ -25,3 +26,9 @@
         +bg($l1)
         +p($b025 $b05)
         font-style: normal
+    
+.title-untitled
+    &::after
+        +oe
+        content: "Untitled..."
+        +o(.5)

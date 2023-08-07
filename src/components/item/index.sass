@@ -16,9 +16,18 @@
     .child
         +shd1
         +m($b05)
-        +mxw($b4*2)
+        .no-content
+            +mxw($b4*2)
+        .item-top
+            .left
+                +oe
+                // +mxw(90%)
+                // word-break: break-word
         .item-content
-            +oe
+            -webkit-line-clamp: 4
+            // +oe
+        &:hover
+            transform: scale(1)
     
     .item-top
         +df
@@ -48,8 +57,18 @@
     .with-icon
         +mb($b025)
     .item-content
-        white-space: pre-wrap
+        // white-space: pre-wrap
         +c($d1)
+        // +oe
+        display: -webkit-box
+        -webkit-line-clamp: 10
+        -webkit-box-orient: vertical
+        overflow: hidden
+        text-overflow: ellipsis
+        // +mxh($b4*6)
+        // overflow: hidden
+        // text-overflow: ellipsis
+        // +oe
     .item-children
         +df
         +fwr
@@ -61,6 +80,13 @@
         overflow-y: scroll
     .item-icon
         +whs($b2)
+        object-fit: cover
+        +r
+        // background-repeat: no-repeat
+        // background-size: cover
+        // background-position: center
+    .icon-only
+        +whs($b4)
 
     .item-title
         +ta(center)
@@ -86,4 +112,53 @@
     +aic
     +jcc
     .item-title
+        +fs($b15)
+    .item-icon
+        +shd
+        +whs($b4*2)
+    .item-title
         +mt($b025)
+.no-content-has-attributes
+    // +fdr
+    +mxw($b4*4)
+    +p($b2 $b15)
+    
+    .item-attribute
+        +fdc
+    .item-attribute-content
+        +ta(center)
+    @media (min-width: 900px)
+        +fdr
+        +mxw($b4*8)
+        .item-head
+            +mr($b2)
+        .item-attributes
+            +mxw($b4*5)
+        
+
+
+.item-attributes
+    +df
+    +fdc
+    +w(100%)
+    
+    .item-attribute
+        +w(100%)
+        +df
+        +jcb
+        +aic
+        +fw(300)
+        font-style: italic
+        // +fdc
+        // +m($b05)
+        +p($b025 0)
+    .item-attribute-content    
+        +mxw(70%)
+    .item-attribute-title
+        // +dn
+        // +mxw(30%)
+        +fw(300)
+        +fs($b075)
+        font-style: italic
+        +c($d1)
+    

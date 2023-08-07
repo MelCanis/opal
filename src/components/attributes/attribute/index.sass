@@ -12,7 +12,7 @@
 
     &:hover
         // +bdr($d15)
-        .attribute-title textarea, .attribute-content textarea, .attribute-title input, .attribute-content input
+        .attribute-title textarea, .attribute-content textarea, .attribute-title input[type='text'], input[type="number"], .attribute-content input[type='text'], input[type="number"]
             +bdr($d2)
         .icon
             +o(1)
@@ -30,21 +30,25 @@
         +df
         +aic
         &:not(.template-attribute-title)
-            input:focus
-                +posr
-                +w($b4*2.5)
+            input[type='text'], input[type="number"]
+                &:focus
+                    +posr
+                    +w($b4*2.5)
 
     .attribute-content
         +f(1.75)
-        textarea, input
+        textarea, input[type='text'], input[type="number"]
             +fw(300)
             +bg($l1)
             &::-webkit-outer-spin-button,
             &::-webkit-inner-spin-button
                 -webkit-appearance: none
                 margin: 0
+        textarea
+            +oe
+            // +mxw(60%)
 
-    input, textarea
+    input[type='text'], input[type="number"], textarea
         +noout
         resize: none
 
@@ -66,6 +70,7 @@
             font-style: italic
             +c($d2)
     textarea
+        
         +pt($b*.25)
         &:focus
             +bdr($d2)
@@ -99,3 +104,6 @@
         
         &:hover
             +bg($d2)
+    
+    .attribute-type-click-shield
+    

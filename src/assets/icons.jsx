@@ -3,7 +3,7 @@ import Ts from "./ts.svg";
 import OpalSVG from "./opalsvg"
 import RealmSVG from "./realmsvg";
 import pad from "./pad.png";
-import { BsDoorClosedFill, BsDoorOpenFill, BsGearWideConnected, BsThreeDots, BsCheckCircleFill, BsPlusLg, BsXCircleFill, BsFillTrashFill, BsCloudUpload, BsGridFill } from "react-icons/bs";
+import { BsDoorClosedFill, BsDoorOpenFill, BsGearWideConnected, BsThreeDots, BsCheckCircleFill, BsPlusLg, BsXCircleFill, BsFillTrashFill, BsUpload, BsGridFill, BsPencilFill } from "react-icons/bs";
 import { RiHome2Fill, RiBook2Fill, RiArrowLeftSLine } from "react-icons/ri";
 import { MdImage, MdNumbers } from "react-icons/md";
 import { IoDocumentText } from "react-icons/io5";
@@ -37,6 +37,7 @@ const
     TemplateIcon = props => <HiOutlineTemplate {...props} className={newClass(props.className)} />,
     XIcon = props => <BsXCircleFill {...props} className={newClass(props.className)}/>,
     BoxIcon = props => <FaBox {...props} className={newClass(props.className)}/>,
+    PencilIcon = props => <BsPencilFill {...props} className={newClass(props.className)}/>,
     TrashIcon = props => <BsFillTrashFill {...props} className={newClass(props.className)}/>,
     TextIcon = props => <BiText {...props} className={newClass(props.className)}/>,
     NumberIcon = props => <MdNumbers {...props} className={newClass(props.className)}/>,
@@ -48,7 +49,7 @@ const
     FilterIcon = props => <HiFilter {...props} className={newClass(props.className)}/>,
     SearchIcon = props => <BiSearch {...props} className={newClass(props.className)}/>,
     MoreIcon = props => <BsThreeDots {...props} className={newClass(props.className)}/>,
-    UploadIcon = props => <BsCloudUpload {...props} className={newClass(props.className)} />,
+    UploadIcon = props => <BsUpload {...props} className={newClass(props.className)} />,
     DragIcon = props => <RxDragHandleDots1 {...props} className={newClass(props.className)} />
 
 export {
@@ -72,6 +73,7 @@ export {
     AttributeIcon,
     TemplateIcon,
     BoxIcon,
+    PencilIcon,
     TrashIcon,
     TextIcon,
     NumberIcon,

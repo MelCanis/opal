@@ -63,3 +63,86 @@
         .glow-s
             +tl($b*.62, $b*.62)
             +whs($b05)
+    .realm-icon
+        +m(0 !important)
+    span
+        +mb($b)
+        +whs($b2*.75)
+        +posr
+        &:hover
+            .RealmOptions
+                +df
+            .icon-inactive path
+                fill: $d
+
+.RealmOptions
+    animation: fadein $t
+    +p($b05)
+    +h(max-content)
+    +dn
+    +fdc
+    +posa
+    +t(-$b*.5)
+    right: -$b2*1.75
+    +bg($l1)
+    +shd
+    +r
+    +bdr($d2)
+    .realm-option
+        +cp
+        +circ
+        // +shd0
+        +bdr($d2)
+        +whs($b2)
+        +bg($l)
+        +cenc
+        // +df
+        +mb($b05)
+        +s
+        +posr
+        &:last-of-type
+            +mb(0)
+        &:hover
+            transform: scale(1.15)
+            .realm-option-title
+                +o(1)
+    .realm-option-icon, .realm-option-icon-empty
+        +whs($b2)
+        object-fit: cover
+        +circ
+    .realm-option-icon-empty
+        +bg(linear-gradient(transparentize($a1, .25), transparentize($a, .25)))
+        +cenc
+        .icon
+            +m(0)
+        svg
+            fill: $l
+            +whs($b)
+    .realm-option-title
+        +posa
+        +t(10%)
+        +l($b4*.75)
+        +o(0)
+        +s
+        +w(max-content)
+        +fs($b075)
+        +fw(600)
+        // +bg(transparentize($l1, ))
+        +shd
+        +bg($a)
+        +c($w)
+        +p($b05 $b)
+        +cenc
+        +r
+    .realm-option-bridge
+        // +bg(blue)
+        +posa
+        +wh(50%, 100%)
+        +t(0)
+        +l(-$b)
+
+@keyframes fadein
+    0%
+        +o(0)
+    100%
+        +o(1)

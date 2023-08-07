@@ -13,8 +13,13 @@
     +whs(fit-content)
     +bg($l)
     box-shadow: 0 0 $b05 transparentize($d1, .9)
-    
-    // +bdr($d2)
+    +posr
+
+    .click-shield
+        +posa
+        +t(0)
+        +l(0)
+        +whs(100%)
 
     .realm-icon
         +bdrrad(50%)
@@ -22,21 +27,44 @@
         box-shadow: 0 0 $b05 transparentize($d1, .75)
         @media (max-width: 800px)
             +whs($b2*3)
+        +cenc
+        svg
+            +whs($b2*1.5)
+            fill: $w
     div.realm-icon
-        +bg(linear-gradient($a1, $a))
-        +bdr($a)
+        +bg(linear-gradient(transparentize($a1, .25), transparentize($a, .25)))
     img.realm-icon
         object-fit: cover
     .realm-title
-        +fw(400)
+        +fw(500)
         +fs($b)
         +c($d1)
         +mt($b*.8)
+    .realm-edit
+        +posa
+        +b($b)
+        +df
+        +jcb
+        +aic
+        +c($d1)
+        +bdrn
+        +bg(transparent)
+        +o(0)
+        +s
+        +mt($b05)
+        +fs($b05)
+        svg
+            +mr($b025)
+            +whs($b075)
+            fill: $d1
+        +cp
 
     &:hover
-        .realm-title
-            // +c($d)
-        // +bg($l0)
+        +pb($b2)
+        .realm-edit
+            +o(.75)
         +bs(none)
-        // .realmselection-head svg
-        //     fill: $a
+    &:active
+        +bg($l0)
+    .realm-edit:hover
+        +o(1)

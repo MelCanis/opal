@@ -1,12 +1,68 @@
 @import "../../styles/utils"
 
 .ImageUpload
-    +bdr($d2)
-    +shd
+    +bdr($l1)
+    +bs(0 $b05 $b05 transparentize($d1, .9))
     +r
     +p($b05)
     +df
     +fdc
+    +whs(max-content)
+    cursor: auto
+    button
+        +df
+        +jcc
+        +fw(500)
+        +cp
+        svg
+            +mr($b05)
+            +whs($b)
+    .imageupload-link
+        +df
+        input
+            +w($b4*2)
+            +bdrt
+            +p(0 $b05)
+            +bg($l1)
+            &::placeholder
+                +c($d1)
+            &:focus
+                +bdr($d2)
+        button
+            +p($b025 $b05)
+            +ml($b05)
+            +bgt
+            +bdr($d2)
+            +r
+            +c($d1)
+            +s
+            svg
+                +s
+                fill: $d1
+                +mr($b025)
+            
+            +bdrt
+            +bg($a)
+            +c($w)
+            svg
+                fill: $w
+            +o(.75)
+            &:hover
+                +o(1)
+    .imageupload-file
+        +r
+        +s
+        +c($d1)
+        +bdrt
+        +bdr($d2)
+        +bgt
+        +o(.75)
+        svg
+            +s
+            fill: $d1
+        &:hover
+            +o(1)
+            +bdr($d2)
     .imageupload-file, .imageupload-cancel
         +mt($b05)
     .imageupload-file, .imageupload-cancel, .imageupload-link, input, button
@@ -21,8 +77,12 @@
         +bdrb($d2)
         +m($b05)
         +mb(-$b * .1)
-
-.imageupload-link button
-    +p($b025 $b05)
-    +ml($b05)
-    +bg($a)
+    .imageupload-cancel
+        +o(.75)
+        +bdrt
+        +bg($re)
+        +c($w)
+        &:hover
+            // +bgt
+            // +bdr(transparentize($re, .5))
+            +o(.75)

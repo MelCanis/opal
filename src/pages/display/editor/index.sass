@@ -3,6 +3,7 @@
 .Editor
     +p($b)
     +pt(0)
+    +pl(0)
     // +evadeexo
     +df
     textarea
@@ -11,11 +12,12 @@
         +bg(transparent)
         +p($b)
         // +pt(0)
-        +fs($b*.9)
+        +fs($b)
         +whs(100%)
-        @media (min-width: 1200px)
+        @media (min-width: 900px)
             +w(70%)
             +m(0 auto)
+            // +ml(0)
         +bdr(transparent)
         +s
     textarea::placeholder

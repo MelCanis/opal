@@ -1,11 +1,12 @@
 import "./index.sass";
-import {items} from "../../../fakedata";
 import Item from "../../../components/item";
+import session from "../../../data/session";
 
 export default function Collection () {
+    const { item, getItems } = session(s => s);
     return (
         <div className="Collection display">
-            {items.map((i, n) => <Item key={n} {...i} />)}
+            {getItems(item?.id).map((i, n) => <Item key={n} {...i} />)}
         </div>
     )
 }

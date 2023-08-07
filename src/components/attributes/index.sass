@@ -1,5 +1,24 @@
 @import "../../styles/utils"
 
+=active
+    .attributes-background
+        +o(1)
+    .attributes-title
+        +h(0)
+    .attributes-add
+        +df
+    .attributes-divider
+        +db
+    .attributes .icon
+        fill: $d1
+    .icon-input
+        span
+            +db
+    .icon-input-empty
+        +df
+    textarea::placeholder
+        +c($d15)
+
 .Attributes
     +p($b)
     +f(.5)
@@ -7,6 +26,7 @@
     +fdc
     +aic
     +posr
+    +mr($b)
     // overflow-y: scroll
     +mnw($b4*4.5)
     
@@ -15,19 +35,10 @@
     //     +mxw(unset)
     //     +f(.5)
     &:hover
-        .attributes-background
-            +o(1)
-        .attributes-title
-            +h(0)
-        .attributes-add
-            +df
-        .attributes-divider
-            +db
-        .icon
-            fill: $d1
-        textarea::placeholder
-            +c($d15)
-
+        +active
+        
+.attributes-empty
+    +active
 .attributes-background
     +wh(100%, 98%)
     +posa
@@ -58,27 +69,80 @@
     +aic
     +fdc
     // +dn
+    // .has-icon
+    //     +bg(transparent)
+    .click-shield
+        +posa
+        +z(1)
+        +t(0)
+        +l(0)
+        +whs(100%)
+        // +bg(blue)
     .icon-input-icon
+        +mnwhs($b4*2)
         +whs($b4*2)
         +circ
-        +bg($d2)
-        +bg(url("https://wallpapers-clan.com/wp-content/uploads/2022/02/naruto-pfp-1.jpg"))
-        background-size: cover
+        +bg(linear-gradient(to bottom, $l1, $d2,))
+        +oh
+        // +shd0
+        // background-size: cover
+        // +bg(url("https://wallpapers-clan.com/wp-content/uploads/2022/02/naruto-pfp-1.jpg"))
+        // background-position: center
+        // background-repeat: no-repeat
+        // background-size: cover
         // +shd
+        +cenc
+        img
+            +whs(100%)
+            object-fit: cover
+        svg
+            fill: $d15
+            +whs($b2)
+    .has-icon
+        +bgt
     &:hover
         +bdr($d2)
         span
-            +db
+            // +db
             animation: fadeIn 1s
-            +o(1)
+            // +o(1)
     span
         +c($d15)
         font-style: italic
         +mt($b)
         +ta(center)
-        +o(0)
+        // +o(0)
         +s
         +dn
+.icon-input-empty
+    +dn
+    animation: growin $t
+
+@keyframes growin
+    0%
+        +h(0)
+        +oh
+    100%
+        +h($b4*3.25)
+        +oh
+
+.ImageUpload
+    +posa
+    +b(-$b4)
+    +z(2)
+    // right: -50%
+    // +cen
+    +whs(max-content)
+    // .imageupload-file, .imageupload-link button
+    //     +fw(500)
+    //     &:hover
+    //         +c($a)
+    //         +bdr($a)
+    //         +bgt
+    
+.imageupload-main
+    +bdr($d2)
+    +bg($l0 !important)
 
 
 .attributes
