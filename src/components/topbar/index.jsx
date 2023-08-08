@@ -11,7 +11,8 @@ export default function Topbar () {
             <div className="left">
                 {!item && <div className="Realm-Title">{realm.title.toUpperCase()}</div>}
                 {item && <><Title />
-                <Path /></>}
+                <Path />
+                </>}
             </div>
             <div className="right">
                 {/* <FilterIcon />

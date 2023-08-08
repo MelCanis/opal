@@ -1,0 +1,114 @@
+@import "../../styles/utils"
+.SignIn
+    +cenc
+    +fdc
+    h1
+        +fs($b)
+        +c(transparentize($d, .25))
+
+        +fw(900)
+        +ml($b025)
+        letter-spacing: -$b*.075
+        font-style: italic
+        @media (min-width: 900px)
+            +fs($b2*.75)
+        // +mt(-$b)
+        // +mb($b)
+    h3
+        letter-spacing: -$b*.05
+        +fw(800)
+        +fs($b2)
+        +c($d)
+        // +notoserif
+        +mb($b05)
+        @media (min-width: 900px)
+            +fs($b2*1.5)
+    p
+        // +fs($b)
+    .signin-box
+        // +posa
+        // +cen
+        +shd1
+        +bg($l)
+        +df
+        +fdc
+        +cenc
+        // +bdr($d2)
+        +r
+        +p($b2 $b4*.75)
+        +wh(75%, 45%)
+        +mxw($b4*10)
+        // @media (max-width: 600)
+        //     +mxwh(unset, unset)
+        //     +h(90%)
+        hr
+            +w(100%)
+            +mxw($b4*4)
+            +bdrt
+            +bdrb($d2)
+            +mb($b)
+        // +wh($b4*8, $b4*6)
+            
+    .signin-top
+        +cp
+        +posa
+        +t($b4)
+        // +l($b)
+        +cenX
+        +df 
+        +whs(fit-content)
+        +aic
+    .signin-opal-icon
+        +whs($b)
+        fill: $a
+        @media (min-width: 900px)
+            +whs($b2*.75)
+    .signin-box-opal-icon
+        fill: $a
+        +whs($b2)
+        
+    .signin-with-google
+        +w(100%)
+        +mxw($b4*4)
+        // +posa
+        // +b(35%)
+        +bdr($d2)
+        +r
+        +p($b05 $b)
+        +bgt
+        +bdrt
+        +df
+        +cenc
+        +notoserif
+        +cp
+        +c($d1)
+        +fs($b)
+        +fwr
+        span
+            +cenc
+        @media (max-width: 420px)
+            +fs($b075)
+        strong
+            +notoserif
+            +c($d1)
+            +s
+        svg
+            +m(0 $b025)
+        +s
+        +bg($l0)
+        &:hover
+            // +shd1
+            +bg($l1)
+            // +bdr($l2)
+            +c($d)
+            strong
+                +c($d)
+
+    .signin-footer
+        +posa
+        +cenX
+        +b($b2)
+        +fs($b05)
+        +c($d1)
+        font-style: italic
+        +notoserif

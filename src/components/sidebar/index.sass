@@ -63,15 +63,24 @@
         .glow-s
             +tl($b*.62, $b*.62)
             +whs($b05)
-    .realm-icon
+    .realm-icon, .gear-icon
         +m(0 !important)
-    span
+    .realm-icon-shield
         +mb($b)
-        +whs($b2*.75)
-        +posr
         &:hover
             .RealmOptions
                 +df
+    .gear-icon-shield
+        +mt($b05)
+        &:hover
+            .SettingsMenu
+                +db
+        
+    .realm-icon-shield, .gear-icon-shield
+        +whs($b2*.75)
+        +posr
+        +cenc
+        &:hover
             .icon-inactive path
                 fill: $d
 
@@ -146,3 +155,68 @@
         +o(0)
     100%
         +o(1)
+
+
+.SettingsMenu
+    +dn
+    +posa
+    +l($b2)
+    +b(0)
+    +shd
+    +r
+    +bdr($d2)
+    +z(2)
+    animation: fadein $t
+    // +p($b05)
+    // +pb($b05)
+    +bg($l)
+    +w($b4*4)
+    +fs($b075)
+    cursor: default
+    .settingsmenu-top
+        +df
+        +jcb
+        +aic
+        +p($b05 $b)
+        h5
+            +fs($b)
+        h6
+            +fs($b075)
+            font-style: italic
+            +c($d1)
+    .settingsmenu-menu
+        +bg($l0)
+        +p($b05 0)
+        +oh
+        +r
+        border-top-left-radius: 0
+        border-top-right-radius: 0
+        hr
+            +bdrn
+            +bdrb($d2)
+            +m($b05 0)
+        p
+            +cp
+            +p($b025 $b)
+            // +o(.5)
+            +c($d1)
+            +s
+            +df
+            +jcb
+            +aic
+            svg
+                +m(0 !important)
+                fill: $d1
+                +whs($b)
+                +s
+            &:hover
+                // +o(1)
+                +c($d)
+                svg
+                    fill: $d
+    .settingsmenu-bridge
+        +posa
+        +z(-1)
+        +wh(50%, 35%)
+        +b(0)
+        +l(-$b)

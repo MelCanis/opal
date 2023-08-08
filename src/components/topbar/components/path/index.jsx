@@ -1,9 +1,12 @@
+import { useMemo, useState } from "react";
 import { ArrowBackIcon, HomeIcon } from "../../../../assets/icons";
 import session from "../../../../data/session";
 import "./index.sass";
 
 export default function Path () {
-    const { item: { parent }, getItem, setItem, } = session(s => s);
+    const { item: { parent, id }, getItem, setItem, } = session(s => s);
+    const [ parentName, setParentName ] = useState("");
+    useMemo(() => { parent && getItem(parent).then(x => setParentName(x.title)) }, [id])
     return (
         <button 
         className={"Path" + (!parent ? " path-home" : "")}
@@ -11,7 +14,7 @@ export default function Path () {
         >
             {parent ? <>
                 <ArrowBackIcon />
-                <p>{getItem(parent).title}</p>
+                <p>{parentName}</p>
                 </> :
                 <HomeIcon/>
             }

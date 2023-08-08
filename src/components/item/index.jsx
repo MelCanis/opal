@@ -1,26 +1,32 @@
 import { MoreIcon } from "../../assets/icons";
 import "./index.sass";
 import session from "../../data/session";
+import { useMemo, useState } from "react";
 
 export default function Item ({title, id, icon, content, attributes, child}) {
     const { setItem, getItems } = session(s => s);
+    const [hasChildren, setHasChildren] = useState(false);
+    const [children, setChildren] = useState([]);
+    useMemo(() => {
+        getItems(id).then(x => {setChildren(x); x.length > 0 && setHasChildren(true)});
+    }, []);
 
     return (
         <div
         className={
             "Item" + 
-            ((!content && getItems(id).length == 0) ? (attributes.length > 0 ? " no-content-has-attributes no-content" : " no-content") : "") + 
+            ((!content && !hasChildren) ? (attributes.length > 0 ? " no-content-has-attributes no-content" : " no-content") : "") + 
             (icon ? " has-icon" : "") +
             (child ? " child" : "")
         }
         onClick={() => setItem(id)}
         >
-            {(!content && getItems(id).length == 0) && <span className="item-head">
+            {(!content && !hasChildren) && <span className="item-head">
                {icon && <img className="item-icon icon-only" src={icon} referrerPolicy="same-origin" />}
                {title && <div className="item-title">{title}</div>}
             </span>}
 
-            {(content || getItems(id).length > 0) && <>
+            {(content || hasChildren) && <>
             {title && <div className={"item-top" + (icon ? " with-icon" : "")}>
                 <div className="left">
                 {icon && <img className="item-icon" src={icon} referrerPolicy="same-origin" />}
@@ -30,10 +36,10 @@ export default function Item ({title, id, icon, content, attributes, child}) {
                     <MoreIcon />
                 </div>
             </div>}
-            { child || getItems(id).length == 0 ?
+            { child || !hasChildren ?
                 <div className="item-content">{content}</div> :
                 <div className="item-children">
-                    {getItems(id).map((i, n) => <Item key={n} child={true} {...i}/>)}
+                    {children.map((i, n) => <Item key={n} child={true} {...i}/>)}
                 </div>
             }
             </>}

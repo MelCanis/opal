@@ -44,7 +44,7 @@ export default function RealmAdd () {
             </div>
 
             <div className="realmadd-foot">
-                <button className="realm-create" onClick={() => { saveRealm(); openRealms(); }}><OpalIcon /> Create</button>
+                <button className="realm-create" onClick={() => { saveRealm(realm.id); openRealms(); }}><OpalIcon /> Create</button>
                 <button className="realm-cancel" onClick={() => openRealms()}><ArrowBackIcon />Cancel</button>
             </div>
         </div>

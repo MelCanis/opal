@@ -1,9 +1,13 @@
 import { create } from "zustand";
 import { userdata } from "../template";
 import { Item, Realm } from "../classes";
+import { convert, find, findAll, findAll2, update } from "../firebase/firestore";
 
 const session = create((set, get) => ({
-    display: "realm",
+    signedin: false,
+    user: null,
+
+    display: "signin",
     realm: null,
     item: null,
     attributes: false,
@@ -11,35 +15,49 @@ const session = create((set, get) => ({
 
     updated: false,
 
+    findAll: findAll,
+
     set: (x) => set(s => x),
-    setRealm: x => set(s => ({realm: userdata.realms.find(({id}) => id == x), display: "grid"})),
+    setRealm: x => {
+        find(get().user, "realms", x).then(y => set(s => ({realm: y, display: "grid"})))
+    },
     openRealms: x => set(s => ({display: "realm", realm: null, item: null, realmedit: false})),
-    saveRealm: x => Object.assign(userdata.realms.find(({id}) => id == get().realm.id), get().realm),
-    getRealm: x => userdata.realms.find(({id}) => id == x),
-    getRealms: x => userdata.realms,
+    saveRealm: x => update(get().user, "realms", x, get().realm),
+    getRealm: async x => { const y = await find(get().user, "realms", x); return y; },
+    getRealms: async x => {const y = await findAll(get().user, "realms"); return y; },
     changeRealm: (x, y) => set(s => ({realm: {...get().realm, [x]: y}})),
     createRealm: () => {
         const newRealm = new Realm();
-        userdata.realms.push(newRealm);
-        set(s => ({realmedit: true, realm: newRealm}));
+        // update(get().user, "realms", newRealm.id, convert(newRealm));
+        set(s => ({realmedit: true, realm: convert(newRealm)}));
     },
 
-    setItem: x => {
-        get().item && get().saveItem();
-        !x ? set(s => ({display: "grid", item: x})) :
-        set(s => ({display: (get().getItems(x).length > 0 ? "grid" : "editor"), item: userdata.items.find(({id}) => id == x), updated: true}));
+    setItem: async x => {
+        get().item && get().saveItem(get().item.id);
+        if (!x) { set(s => ({display: "grid", item: x})); return; }
+        find(get().user, "items", x).then(y => {
+            get().getItems(x).then(z => {
+                set({display: z.length > 0 ? "grid" : "editor", item: y});
+            })
+        })
     },
-    getItem: x => userdata.items.find(({id}) => id == x),
-    getItems: x => x ? userdata.items.filter(i => i.parent == x) : userdata.items.filter(i => i.realm == get().realm.id && !i.parent),
+    getItem: async x => { const y = await find(get().user, "items", x); return y; },
+    getItems: async x => {
+        const y = x ? await findAll2(get().user, "items", "parent", x, "realm", get().realm.id) : await findAll2(get().user, "items", "parent", null, "realm", get().realm.id);
+        return y;
+    },
 
     changeItem: (x, y) => set(s => ({item: {...get().item, [x]: y}})),
-    saveItem: x => Object.assign(userdata.items.find(({id}) => id == get().item.id), get().item),
+    saveItem: x => update(get().user, "items", x, get().item), 
     createItem: x => {
-        const newItem = new Item(get().realm.id, get().item?.id, "", "", "");
-        if (get().item.template.length > 0) newItem.attributes = get().item.template.map(i => ({...i, content: ""}));
-        userdata.items.push(newItem);
+        const newItem = new Item(get().realm.id, get().item? get().item.id : null, "", "", "");
+        if (get().item?.template.length > 0) newItem.attributes = get().item.template.map(i => ({...i, content: ""}));
+        update(get().user, "items", newItem.id, convert(newItem));
         get().setItem(newItem.id);
     },
+
+
+
 }))
 
 export default session;

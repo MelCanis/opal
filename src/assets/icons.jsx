@@ -3,11 +3,12 @@ import Ts from "./ts.svg";
 import OpalSVG from "./opalsvg"
 import RealmSVG from "./realmsvg";
 import pad from "./pad.png";
-import { BsDoorClosedFill, BsDoorOpenFill, BsGearWideConnected, BsThreeDots, BsCheckCircleFill, BsPlusLg, BsXCircleFill, BsFillTrashFill, BsUpload, BsGridFill, BsPencilFill } from "react-icons/bs";
+import { BsDoorClosedFill, BsDoorOpenFill, BsGearWideConnected, BsThreeDots, BsCheckCircleFill, BsPlusLg, BsXCircleFill, BsFillTrashFill, BsUpload, BsGridFill, BsPencilFill, BsBoxArrowLeft } from "react-icons/bs";
 import { RiHome2Fill, RiBook2Fill, RiArrowLeftSLine } from "react-icons/ri";
 import { MdImage, MdNumbers } from "react-icons/md";
 import { IoDocumentText } from "react-icons/io5";
 import { FaBox } from "react-icons/fa";
+import { FcGoogle } from "react-icons/fc";
 import { HiOutlineTemplate, HiEye, HiFilter, HiPlusCircle} from "react-icons/hi";
 import { BiText, BiCheckCircle, BiLink, BiSearch } from "react-icons/bi";
 import { AiFillTag } from "react-icons/ai";
@@ -50,7 +51,10 @@ const
     SearchIcon = props => <BiSearch {...props} className={newClass(props.className)}/>,
     MoreIcon = props => <BsThreeDots {...props} className={newClass(props.className)}/>,
     UploadIcon = props => <BsUpload {...props} className={newClass(props.className)} />,
-    DragIcon = props => <RxDragHandleDots1 {...props} className={newClass(props.className)} />
+    DragIcon = props => <RxDragHandleDots1 {...props} className={newClass(props.className)} />,
+    LogoutIcon = props => <BsBoxArrowLeft {...props} className={newClass(props.className)} />,
+    GoogleIcon = props => <FcGoogle {...props} className={newClass(props.className)} />
+
 
 export {
     OpalIcon,
@@ -86,5 +90,7 @@ export {
     SearchIcon,
     MoreIcon,
     UploadIcon,
-    DragIcon
+    DragIcon,
+    LogoutIcon,
+    GoogleIcon
 };

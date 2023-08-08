@@ -7,16 +7,24 @@ import Topbar from "./components/topbar"
 import Collection from "./pages/display/collection"
 import Editor from "./pages/display/editor"
 import RealmDisplay from "./pages/realm"
+import SignIn from "./pages/signin"
+import { useMemo } from "react"
+import { getUser } from "./data/local"
+import { checkUser } from "./data/firebase/firestore"
 
 function App() {
 
-  const { display, realmedit, item, attributes } = session(s => s);
+  const { signedin, display, realmedit, item, attributes, set } = session(s => s);
+  useMemo(() => {
+    getUser() && checkUser(getUser()).then(x => set({user: x, signedin: true}));
+  }, []);
 
   return (
+    display == "signin" || !signedin ? <SignIn /> :
     <>
     <div className="exo">
       <Sidebar />
-      {display != "realm" && <Topbar />}
+      {display !=  "realm" && <Topbar />}
     </div>
     <div className={"main" + (display != "realm" ? " main-app" : "")}>
       {display == "realm" && <RealmDisplay />}

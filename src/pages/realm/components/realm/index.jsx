@@ -12,11 +12,11 @@ export default function Realm ({id, icon, title, className, n, onHover}) {
         
         >
             <div className="click-shield" onClick={() => setRealm(id)}></div>
-            {icon ? <img className='realm-icon' src={icon}/> : <div className="realm-icon"><RealmIcon /></div>}
+            {icon ? <img className='realm-icon' src={icon} referrerPolicy="same-origin"/> : <div className="realm-icon"><RealmIcon /></div>}
             <div className="realm-title">
                 {title ? title : "New Realm" }
             </div>
-            <button onClick={() => set({realmedit: true, realm: getRealm(id)})} className="realm-edit"><PencilIcon />Edit</button>
+            <button onClick={() => getRealm(id).then(x => set({realmedit: true, realm: x}))} className="realm-edit"><PencilIcon />Edit</button>
         </div>
     )
 }
