@@ -13,7 +13,7 @@ const session = create((set, get) => ({
     attributes: false,
     realmedit: false,
 
-    updated: false,
+    updated: true,
 
     findAll: findAll,
 
@@ -34,10 +34,11 @@ const session = create((set, get) => ({
 
     setItem: async x => {
         get().item && get().saveItem(get().item.id);
-        if (!x) { set(s => ({display: "grid", item: x})); return; }
+        set(s => ({updated: false}))
+        if (!x) { set(s => ({ display: "grid", item: x, updated: true })); return; }
         find(get().user, "items", x).then(y => {
             get().getItems(x).then(z => {
-                set({display: z.length > 0 ? "grid" : "editor", item: y});
+                set(s => ({ display: z.length > 0 ? "grid" : "editor", item: y, updated: true }));
             })
         })
     },

@@ -12,6 +12,7 @@
         +pt($b*.85)
         +df
         +aic
+        +fadein
     .right
         +df
         .icon
@@ -30,3 +31,11 @@
     letter-spacing: -$b*.05
     +fs($b)
     +ml(-$b05)
+
+@keyframes fadein
+    0%
+        +o(0)
+    75%
+        +o(0)   
+    100%
+        +o(1)

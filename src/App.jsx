@@ -11,10 +11,11 @@ import SignIn from "./pages/signin"
 import { useMemo } from "react"
 import { getUser } from "./data/local"
 import { checkUser } from "./data/firebase/firestore"
+import { OpalIcon } from "./assets/icons"
 
 function App() {
 
-  const { signedin, display, realmedit, item, attributes, set } = session(s => s);
+  const { signedin, display, item, attributes, updated, set } = session(s => s);
   useMemo(() => {
     getUser() && checkUser(getUser()).then(x => set({user: x, signedin: true}));
   }, []);
@@ -24,9 +25,10 @@ function App() {
     <>
     <div className="exo">
       <Sidebar />
-      {display !=  "realm" && <Topbar />}
+      {display !=  "realm" && updated && <Topbar />}
     </div>
-    <div className={"main" + (display != "realm" ? " main-app" : "")}>
+    {!updated && <OpalIcon className="loading" />}
+    {updated && <div className={"main" + (display != "realm" ? " main-app" : "")}>
       {display == "realm" && <RealmDisplay />}
       {display != "realm" && <>
         {item && attributes && <Attributes />}
@@ -35,7 +37,7 @@ function App() {
         {display == "editor" && <Editor />}
         {/* <Search /> */}
       </>}
-    </div>
+    </div>}
     </>
   )
 }

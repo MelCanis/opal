@@ -4,8 +4,8 @@
     +p($b)
     +pt(0)
     +pl(0)
-    // +evadeexo
     +df
+    animation: fadeeasein 1s
     textarea
         +noout
         resize: none
@@ -37,3 +37,12 @@
         +o(1)
     100%
         +o(0)
+
+@keyframes fadeeasein
+    0%
+        +o(0)
+    25%
+        +o(0)
+    100%
+        +o(1)
+        
