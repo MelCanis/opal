@@ -25,7 +25,7 @@ function App() {
     <>
     <div className="exo">
       <Sidebar />
-      {display !=  "realm" && updated && <Topbar />}
+      {display !=  "realm" && <Topbar />}
     </div>
     {/* {!updated && <OpalIcon className="loading" />} */}
     {updated && <div className={"main" + (display != "realm" ? " main-app" : "")}>

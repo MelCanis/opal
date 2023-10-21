@@ -1,7 +1,7 @@
 import { create } from "zustand";
 import { userdata } from "../template";
 import { Item, Realm } from "../classes";
-import { convert, find, findAll, findAll2, update } from "../firebase/firestore";
+import { convert, deletion, find, findAll, findAll2, update } from "../firebase/firestore";
 
 const session = create((set, get) => ({
     signedin: false,
@@ -19,13 +19,14 @@ const session = create((set, get) => ({
 
     set: (x) => set(s => x),
     setRealm: x => {
-        find(get().user, "realms", x).then(y => set(s => ({realm: y, display: "grid"})))
+        set(s => ({ updated: false }));
+        find(get().user, "realms", x).then(y => set(s => ({ realm: y, display: "grid", item: null, updated: true })))
     },
     openRealms: x => set(s => ({display: "realm", realm: null, item: null, realmedit: false})),
     saveRealm: x => update(get().user, "realms", x, get().realm),
     getRealm: async x => { const y = await find(get().user, "realms", x); return y; },
     getRealms: async x => {const y = await findAll(get().user, "realms"); return y; },
-    changeRealm: (x, y) => set(s => ({realm: {...get().realm, [x]: y}})),
+    changeRealm: (x, y) => set(s => ({ realm: { ...get().realm, [x]: y }})),
     createRealm: () => {
         const newRealm = new Realm();
         // update(get().user, "realms", newRealm.id, convert(newRealm));
@@ -56,6 +57,18 @@ const session = create((set, get) => ({
         update(get().user, "items", newItem.id, convert(newItem));
         get().setItem(newItem.id);
     },
+    deleteItem: x => {
+        set(s => ({updated: false}));
+        recursiveDeletion(x).then(y => setTimeout(set(s => ({ updated: true })), 200));
+        async function recursiveDeletion(r) {
+            deletion(get().user, "items", r); // r= id
+            let items = await get().getItems(r);
+            items.forEach(z => { // [item, ...]
+                deletion(get().user, "items", z.id); // z= item
+                recursiveDeletion(z.id) // [?item, ...]
+            })
+        }
+    }
 
 
 

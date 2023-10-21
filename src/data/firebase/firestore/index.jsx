@@ -1,8 +1,5 @@
-import { getFirestore, collection, addDoc, getDocs, getDoc, doc, setDoc, query, where } from "firebase/firestore";
+import { getFirestore, collection, addDoc, getDocs, getDoc, doc, setDoc, query, where, deleteDoc } from "firebase/firestore";
 import { app } from "..";
-import { v4 as uuid } from 'uuid';
-import { userdata } from "../../template";
-import { Item, Realm } from "../../classes";
 
 import { addUser, checkUser } from "./user";
 
@@ -16,6 +13,10 @@ const db = getFirestore(app);
 export function update (x, y, z, a) {
     const b = doc(collection(x, y), z);
     setDoc(b, a, {merge: true});
+}
+export function deletion(x, y, z) {
+    const b = doc(collection(x, y), z);
+    deleteDoc(b);
 }
 
 export async function find (x, y, z) {
