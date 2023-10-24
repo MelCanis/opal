@@ -5,11 +5,7 @@ import "./index.sass";
 import session from "../../data/session";
 
 export default function SignIn () {
-    const { set, signedin, user, findAll } = session(s => s);
-    useEffect(() => {
-        if (!signedin) return; 
-        set({display: "realm"});
-    }, [signedin]);
+    const { set } = session(s => s);
 
     return (
         <div className="SignIn display">

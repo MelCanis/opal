@@ -1,15 +1,24 @@
 import { useState } from "react";
-import { ArrowBackIcon, ImageIcon, OpalIcon, UploadIcon } from "../../../../assets/icons"
+import { ArrowBackIcon, ImageIcon, MoreIcon, OpalIcon, TrashIcon, UploadIcon } from "../../../../assets/icons"
 import ImageUpload from "../../../../components/image-upload"
 import session from "../../../../data/session"
 import "./index.sass"
 
 export default function RealmAdd () {
-    const { realm, changeRealm, openRealms, saveRealm } = session(s => s);
+    const { realm, changeRealm, openRealms, saveRealm, deleteRealm } = session(s => s);
     const [uploading, setUploading] = useState(false);
+    const [moreopen, setMoreopen] = useState();
+    function closeonout (e) { if (e.target.className != "nav") {setMoreopen(false); window.removeEventListener("click", closeonout)} }
+
     return (
         <div className="RealmAdd">
             <OpalIcon className="opal-background" />
+            <div className="more-button">
+                <MoreIcon className="more" onClick={_ => { setMoreopen(!moreopen); setTimeout(_ => window.addEventListener("click", closeonout), 100)}}/>
+                {moreopen && <div className="nav">
+                    Delete Realm <TrashIcon onClick={_ => { deleteRealm(realm.id); openRealms() }}/>
+                </div>}
+            </div>
             
             <div className="realmadd-head">
                 <h5>Create a Realm</h5>

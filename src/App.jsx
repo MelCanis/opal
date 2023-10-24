@@ -15,19 +15,21 @@ import { OpalIcon } from "./assets/icons"
 
 function App() {
 
-  const { signedin, display, item, attributes, updated, set } = session(s => s);
+  const { signedin, display, setDisplay, item, attributes, updated, set } = session(s => s);
   useMemo(() => {
-    getUser() && checkUser(getUser()).then(x => set({user: x, signedin: true}));
-  }, []);
+    // setDisplay(getUser() ? "loading" : "signin")
+    // console.log(display)
+    getUser() && checkUser(getUser()).then(x => set({user: x, signedin: true, display: "realm"}));
+  }, [signedin]);
 
   return (
-    display == "signin" || !signedin ? <SignIn /> :
+    display == "signin" || (!getUser && !signedin) ? <SignIn /> :
     <>
     <div className="exo">
-      <Sidebar />
-      {display !=  "realm" && <Topbar />}
+      {display != "loading" && <Sidebar />}
+      {display !=  "realm" && display != "loading" && <Topbar />}
     </div>
-    {/* {!updated && <OpalIcon className="loading" />} */}
+    {display == "loading" && <OpalIcon className="loading" />}
     {updated && <div className={"main" + (display != "realm" ? " main-app" : "")}>
       {display == "realm" && <RealmDisplay />}
       {display != "realm" && <>

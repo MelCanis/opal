@@ -1,4 +1,4 @@
-import { EyeIcon, FilterIcon, MoreIcon } from "../../assets/icons";
+import { EyeIcon, FilterIcon } from "../../assets/icons";
 import session from "../../data/session";
 import More from "./components/more";
 import Path from "./components/path";

@@ -157,4 +157,37 @@
         +o(.75)
 .ImageUpload
     +posa
-    +bg($l)
+    +bg($l0)
+
+.RealmAdd .more-button
+    +posa
+    // +bg(blue)
+    +t($b)
+    right: $b
+    +cenc
+    +whs(max-content)
+    svg.more
+        +r
+        +s
+        +whs($b*1.5)
+        +p($b*.25)
+        &:hover
+            +bg($l1)
+
+    .nav
+        +posa
+        +df
+        +cenc
+        +whs(max-content)
+        +fs(4b)
+        +t($b*2)
+        right: 0
+        +bg($red)
+        +c($l)
+        +p($b*.25 $b*.5)
+        +r
+        +shd1
+        +cp
+        svg
+            +ml($b*.5)
+            fill: $l

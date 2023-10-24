@@ -1,5 +1,4 @@
 import { create } from "zustand";
-import { userdata } from "../template";
 import { Item, Realm } from "../classes";
 import { convert, deletion, find, findAll, findAll2, update } from "../firebase/firestore";
 
@@ -7,7 +6,7 @@ const session = create((set, get) => ({
     signedin: false,
     user: null,
 
-    display: "signin",
+    display: "loading",
     realm: null,
     item: null,
     attributes: false,
@@ -29,7 +28,6 @@ const session = create((set, get) => ({
     changeRealm: (x, y) => set(s => ({ realm: { ...get().realm, [x]: y }})),
     createRealm: () => {
         const newRealm = new Realm();
-        // update(get().user, "realms", newRealm.id, convert(newRealm));
         set(s => ({realmedit: true, realm: convert(newRealm)}));
     },
 
@@ -60,18 +58,21 @@ const session = create((set, get) => ({
     deleteItem: x => {
         set(s => ({updated: false}));
         recursiveDeletion(x).then(y => setTimeout(set(s => ({ updated: true })), 200));
-        async function recursiveDeletion(r) {
-            deletion(get().user, "items", r); // r= id
-            let items = await get().getItems(r);
-            items.forEach(z => { // [item, ...]
-                deletion(get().user, "items", z.id); // z= item
-                recursiveDeletion(z.id) // [?item, ...]
+        async function recursiveDeletion(id) {
+            deletion(get().user, "items", id);
+            let items = await get().getItems(id);
+            items.forEach(item => {
+                deletion(get().user, "items", item.id);
+                recursiveDeletion(item.id);
             })
         }
+    },
+    deleteRealm: x => {
+        deletion(get().user, "realms", x);
+        findAll(get().user, "items", "realm", x).then(y => {
+            y?.forEach(z => deletion(get().user, "items", z.id));
+        })
     }
-
-
-
 }))
 
 export default session;

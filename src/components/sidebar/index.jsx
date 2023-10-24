@@ -18,7 +18,7 @@ function RealmOptions ({realms, closeCallback}) {
     return (
         <div className="RealmOptions">
             <div className="realm-option-bridge"></div>
-            {realms.filter(({id}) => id != realm.id).map(i => <div className="realm-option" 
+            {realms?.filter(({id}) => id != realm.id).map((i, n) => <div key={n} className="realm-option" 
             onClick={() => {setRealm(i.id); closeCallback();}}>
                {(i.icon ? <img src={i.icon} alt="" className="realm-option-icon" /> :
                <div className="realm-option-icon-empty"><RealmIcon /></div>)}
