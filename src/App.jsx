@@ -8,7 +8,7 @@ import Collection from "./pages/display/collection"
 import Editor from "./pages/display/editor"
 import RealmDisplay from "./pages/realm"
 import SignIn from "./pages/signin"
-import { useMemo } from "react"
+import { useEffect, useMemo } from "react"
 import { getUser } from "./data/local"
 import { checkUser } from "./data/firebase/firestore"
 import { OpalIcon } from "./assets/icons"
@@ -20,6 +20,7 @@ function App() {
   useMemo(() => {
     getUser() && checkUser(getUser()).then(x => set({user: x, signedin: true, display: "realm"}));
   }, [signedin]);
+  useEffect(_ => { console.log(display) }, [display])
 
   return (
     display == "signin" || (!getUser() && !signedin) ? <SignIn /> :
@@ -33,7 +34,7 @@ function App() {
       {display == "realm" && <RealmDisplay />}
       {display != "realm" && <>
         {item && attributes && <Attributes />}
-        {display =="thought" && <Thought />}
+        {display =="thought" && <Collection />}
         {display == "grid" && <Collection />}
         {display == "editor" && <Editor />}
         {/* <Drawer /> */}

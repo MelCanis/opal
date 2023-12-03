@@ -15,8 +15,6 @@ function Dot ({callback}) {
 
 const dots = [1, 2, 3, 4, 5];
 
-
-
 export default function Thought () {
     const boundary = useRef(), pseudoBoundary = useRef();
     const boundaryRect = useRect(pseudoBoundary);
