@@ -33,13 +33,10 @@ const session = create((set, get) => ({
 
     setItem: async x => {
         get().item && get().saveItem(get().item.id);
-        set(s => ({updated: false}))
+        set(s => ({updated: false}));
         if (!x) { set(s => ({ display: "grid", item: x, updated: true })); return; }
-        find(get().user, "items", x).then(y => {
-            get().getItems(x).then(z => {
-                set(s => ({ display: "editor", item: y, updated: true }));
-            })
-        })
+        const item = await find(get().user, "items", x), items = await get().getItems(x);
+        set(s => ({ display: items.length > 0 ? "grid" : "editor", item: item, updated: true }));
     },
     getItem: async x => { const y = await find(get().user, "items", x); return y; },
     getItems: async x => {
