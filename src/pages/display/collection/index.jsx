@@ -1,9 +1,7 @@
 import "./index.sass";
 import Item from "../../../components/item";
 import session from "../../../data/session";
-import { useEffect, useMemo, useState } from "react";
-import { OpalIcon } from "../../../assets/icons";
-import anime from "animejs";
+import { useMemo, useState } from "react";
 import { deletionStore } from "../../../components/topbar/components/more";
 
 export default function Collection () {
@@ -14,7 +12,6 @@ export default function Collection () {
     useMemo(() => {
         setItems(i => [])
         getItems(item?.id).then(x => setItems(i => x));
-        
     }, [item, realm]);
 
     return (

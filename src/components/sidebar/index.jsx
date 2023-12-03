@@ -72,8 +72,8 @@ export default function Sidebar () {
                 </>
                 }
                 {display == "grid" && <GridIcon className="icon-smaller"/>}
-                {/* <ThoughtspaceIcon /> */}
-                {display == "editor" && <PencilIcon className="icon-smaller"/>}
+                {display == "thought" && <ThoughtspaceIcon className="icon-smaller" />}
+                {display == "editor" && <PencilIcon className="icon-smaller" />}
                 {/* <DoorOpenIcon className="icon-smaller"/> */}
                 {display != "realm" && item && <AttributeIcon className="icon-smaller icon-inactive" onClick={() => set({attributes: !attributes})}/>}
                 {/* <BoxIcon className="icon-even-smaller icon-inactive"/> */}

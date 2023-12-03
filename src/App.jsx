@@ -12,18 +12,17 @@ import { useMemo } from "react"
 import { getUser } from "./data/local"
 import { checkUser } from "./data/firebase/firestore"
 import { OpalIcon } from "./assets/icons"
+import Thought from "./pages/display/thought"
 
 function App() {
 
   const { signedin, display, setDisplay, item, attributes, updated, set } = session(s => s);
   useMemo(() => {
-    // setDisplay(getUser() ? "loading" : "signin")
-    // console.log(display)
     getUser() && checkUser(getUser()).then(x => set({user: x, signedin: true, display: "realm"}));
   }, [signedin]);
 
   return (
-    display == "signin" || (!getUser && !signedin) ? <SignIn /> :
+    display == "signin" || (!getUser() && !signedin) ? <SignIn /> :
     <>
     <div className="exo">
       {display != "loading" && <Sidebar />}
@@ -34,9 +33,10 @@ function App() {
       {display == "realm" && <RealmDisplay />}
       {display != "realm" && <>
         {item && attributes && <Attributes />}
+        {display =="thought" && <Thought />}
         {display == "grid" && <Collection />}
-        {/* <Drawer /> */}
         {display == "editor" && <Editor />}
+        {/* <Drawer /> */}
         {/* <Search /> */}
       </>}
     </div>}

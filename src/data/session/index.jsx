@@ -37,7 +37,7 @@ const session = create((set, get) => ({
         if (!x) { set(s => ({ display: "grid", item: x, updated: true })); return; }
         find(get().user, "items", x).then(y => {
             get().getItems(x).then(z => {
-                set(s => ({ display: z.length > 0 ? "grid" : "editor", item: y, updated: true }));
+                set(s => ({ display: "thought", item: y, updated: true }));
             })
         })
     },

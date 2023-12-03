@@ -1,9 +1,5 @@
 import { v4 as uuid } from 'uuid';
-// export class User {
-//     constructor (name, email, ) {
 
-//     }
-// }
 export class Realm {
     id = uuid();
     title = 'New Realm';
