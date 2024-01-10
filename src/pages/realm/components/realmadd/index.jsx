@@ -1,13 +1,16 @@
-import { useState } from "react";
+import { useMemo, useState } from "react";
 import { ArrowBackIcon, ImageIcon, MoreIcon, OpalIcon, TrashIcon, UploadIcon } from "../../../../assets/icons"
 import ImageUpload from "../../../../components/image-upload"
 import session from "../../../../data/session"
 import "./index.sass"
 
 export default function RealmAdd () {
-    const { realm, changeRealm, openRealms, saveRealm, deleteRealm } = session(s => s);
+    const { realm, changeRealm, getRealm, openRealms, saveRealm, deleteRealm, editing } = session(s => s);
     const [uploading, setUploading] = useState(false);
     const [moreopen, setMoreopen] = useState();
+    useMemo(_ => {
+
+    }, []);
     function closeonout (e) { if (e.target.className != "nav") {setMoreopen(false); window.removeEventListener("click", closeonout)} }
 
     return (
@@ -53,7 +56,7 @@ export default function RealmAdd () {
             </div>
 
             <div className="realmadd-foot">
-                <button className="realm-create" onClick={() => { saveRealm(realm.id); openRealms(); }}><OpalIcon /> Create</button>
+                <button className="realm-create" onClick={() => { saveRealm(realm.id); openRealms(); }}><OpalIcon /> {editing ? "Finish" : "Create"}</button>
                 <button className="realm-cancel" onClick={() => openRealms()}><ArrowBackIcon />Cancel</button>
             </div>
         </div>

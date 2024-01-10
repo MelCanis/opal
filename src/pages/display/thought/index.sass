@@ -2,20 +2,48 @@
 
 .Thought
     +posr
-    .boundary
-        +posa
-        +t(0)
-        right: 0
-        +whs(100%)
-        +bg(blue)
-    .pseudoBoundary
-        +posa
-        +cen
-        +whs(100%)
-        +bg(green)
-
     .dot
         +posa
-        +whs($b*2)
+        +whs($b)
         +circ
-        +bg(black)
+        +bdr($d)
+        +bg($d)
+        pointer-events: all
+        // animation: bubblein 1s
+        +trs($t*.25)
+        @for $i from 1 through 50
+            &:nth-child(#{$i})
+                animation: bubblein .1s * $i
+        animation-timing-function: cubic-bezier(.9,.1,.1,.1)
+        .title
+            +trs($t)
+            +c($d05)
+            +posa
+            +cenX
+            +t($b2)
+            +wh($b2*5, max-content)
+            +ta(center)
+            pointer-events: none
+            cursor: default
+        &:hover
+            +trs($t*.25)
+        &:active
+            +trs(none)
+        &:hover, &:active
+            +bg($d15)
+            +bdrt
+            box-shadow: 0 $b $b $d2
+            transform: scale(1.25)
+            .title
+                +c($d)
+                transform: translate(-50%, 0) scale(1.25)
+
+@keyframes bubblein
+    0%
+        // transform: scale(.75)
+        +o(0)
+    // 75%
+    //     transform: scale(1.25)
+    100%
+        +o(1)
+        // transform: scale(1)

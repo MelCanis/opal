@@ -2,7 +2,7 @@
 
 .Sidebar
     +posa
-    +z(2)
+    +z(10)
     +h(100%)
     +p($b $b05)
     +df
@@ -45,6 +45,18 @@
     .search-icon
         +s
         +o(.75)
+        &:hover
+            +o(1)
+    .searching
+        +circ
+        fill: white
+        +bg($a)
+        +p($b025)
+        +pt($b025*1.25)
+        +pl($b025*1.25)
+        +s
+        +o(.75)
+        +mb($b*1.25!important)
         &:hover
             +o(1)
     .glow-cont
@@ -97,7 +109,7 @@
     +shd
     +r
     +bdr($d2)
-    .realm-option
+    .realm-option, .realm-option-no-icon
         +cp
         +circ
         // +shd0
@@ -115,6 +127,8 @@
             transform: scale(1.15)
             .realm-option-title
                 +o(1)
+    .realm-option-no-icon
+        +bdrn
     .realm-option-icon, .realm-option-icon-empty
         +whs($b2)
         object-fit: cover

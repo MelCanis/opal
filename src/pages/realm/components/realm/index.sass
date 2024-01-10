@@ -40,6 +40,8 @@
         +fs($b)
         +c($d1)
         +mt($b*.8)
+        +mxw($b*12)
+        +oe
     .realm-edit
         +posa
         +b($b)
@@ -68,3 +70,13 @@
         +bg($l0)
     .realm-edit:hover
         +o(1)
+    @media (max-height: 800px)
+        .realm-icon
+            +whs($b2*1.5)
+            svg
+                +whs($b2*.75)
+        .realm-title
+            +mxw($b*8)
+    @media (max-width: 1100px)
+        .realm-title
+            +mxw($b*12)

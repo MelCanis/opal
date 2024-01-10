@@ -8,7 +8,7 @@ import Collection from "./pages/display/collection"
 import Editor from "./pages/display/editor"
 import RealmDisplay from "./pages/realm"
 import SignIn from "./pages/signin"
-import { useEffect, useMemo } from "react"
+import { useMemo } from "react"
 import { getUser } from "./data/local"
 import { checkUser } from "./data/firebase/firestore"
 import { OpalIcon } from "./assets/icons"
@@ -16,11 +16,10 @@ import Thought from "./pages/display/thought"
 
 function App() {
 
-  const { signedin, display, setDisplay, item, attributes, updated, set } = session(s => s);
+  const { signedin, display, thoughtspace, item, attributes, search, updated, set } = session(s => s);
   useMemo(() => {
     getUser() && checkUser(getUser()).then(x => set({user: x, signedin: true, display: "realm"}));
   }, [signedin]);
-  useEffect(_ => { console.log(display) }, [display])
 
   return (
     display == "signin" || (!getUser() && !signedin) ? <SignIn /> :
@@ -30,15 +29,19 @@ function App() {
       {display !=  "realm" && display != "loading" && <Topbar />}
     </div>
     {display == "loading" && <OpalIcon className="loading" />}
-    {updated && <div className={"main" + (display != "realm" ? " main-app" : "")}>
-      {display == "realm" && <RealmDisplay />}
+    {<div className={"main" + (display != "realm" ? " main-app" : "")}>
+      {updated && display == "realm" && <RealmDisplay />}
       {display != "realm" && <>
-        {item && attributes && <Attributes />}
-        {display =="thought" && <Collection />}
-        {display == "grid" && <Collection />}
-        {display == "editor" && <Editor />}
+        {search && <Search />}
+        {updated && <>
+          {item && attributes && <Attributes />}
+          {display == "grid" && <>
+            {thoughtspace && <Thought/>}
+            {!thoughtspace && <Collection />}
+          </>}
+          {display == "editor" && <Editor />}
+        </>}
         {/* <Drawer /> */}
-        {/* <Search /> */}
       </>}
     </div>}
     </>

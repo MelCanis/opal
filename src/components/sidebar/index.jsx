@@ -18,9 +18,9 @@ function RealmOptions ({realms, closeCallback}) {
     return (
         <div className="RealmOptions">
             <div className="realm-option-bridge"></div>
-            {realms?.filter(({id}) => id != realm.id).map((i, n) => <div key={n} className="realm-option" 
+            {realms?.filter(({id}) => id != realm.id).map((i, n) => <div key={n} className={i.icon? "realm-option" : "realm-option-no-icon"} 
             onClick={() => {setRealm(i.id); closeCallback();}}>
-               {(i.icon ? <img src={i.icon} alt="" className="realm-option-icon" /> :
+                {(i.icon ? <img src={i.icon} alt="" className="realm-option-icon" referrerPolicy="same-origin" /> :
                <div className="realm-option-icon-empty"><RealmIcon /></div>)}
                <div className="realm-option-title">{i.title}</div>
             </div>)}
@@ -49,7 +49,7 @@ function SettingsMenu () {
 
 
 export default function Sidebar () {
-    const { set, display, openRealms, getRealms, createItem, item, attributes } = session(s => s);
+    const { set, display, thoughtspace, openRealms, getRealms, createItem, item, attributes, search } = session(s => s);
     const [close, setClose] = useState(false);
     const [realms, setRealms] = useState([]);
     useMemo(() => {
@@ -64,15 +64,16 @@ export default function Sidebar () {
             <div className="top">
                 <GlowIcon Svg={OpalIcon} opalicon={true}/>
                 {display != "realm" &&
-                <><GlowIcon Svg={SearchIcon} s={true}/>
+                <>
+                {search ? <SearchIcon className="searching" onClick={e => set({ search: !search })} /> : <GlowIcon Svg={SearchIcon} s={true} onClick={e => set({search: !search})}/>}
                 <span className="realm-icon-shield">
                     <RealmIcon onClick={openRealms} className="realm-icon icon-inactive"/>
                     {!close && realms.length > 1 && <RealmOptions realms={realms} closeCallback={closeRealmOptions} />}
                 </span>
                 </>
                 }
-                {display == "grid" && <GridIcon className="icon-smaller"/>}
-                {display == "thought" && <ThoughtspaceIcon className="icon-smaller" />}
+                {(!thoughtspace && display == "grid") && <GridIcon className="icon-smaller" onClick={e => set({thoughtspace: !thoughtspace})}/>}
+                {(thoughtspace && display == "grid") && <ThoughtspaceIcon className="icon-smaller" onClick={e => set({ thoughtspace: !thoughtspace })} />}
                 {display == "editor" && <PencilIcon className="icon-smaller" />}
                 {/* <DoorOpenIcon className="icon-smaller"/> */}
                 {display != "realm" && item && <AttributeIcon className="icon-smaller icon-inactive" onClick={() => set({attributes: !attributes})}/>}

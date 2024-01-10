@@ -21,7 +21,7 @@ export default function Item ({title, id, icon, content, attributes, child}) {
             "Item" +
             (hasChildren ? " has-children" : "") +
             ((!content && !hasChildren) ? (attributes.length > 0 ? " no-content-has-attributes no-content" : " no-content") : "") + 
-            (icon ? " has-icon" : "") +
+            (icon ? " has-icon" : "") + (icon && !hasChildren && !content ? " only-icon" : "") +
             (child ? " child" : "")
         }
         onClick={(!child && !deleting) ? () => setItem(id) : null}

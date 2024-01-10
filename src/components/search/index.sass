@@ -1,58 +1,122 @@
 @import "../../styles/utils"
 
 .Search
-    .search-panel
-        +posf
-        +z(20)
-        +t(10%)
-        +cenX
-        +w(75%)
-        +h(fit-content)
-        +mxh(75%)
-        +bg($l)
-        +p($b)
-        +shd
+    +mt($b*.5)
+    +z(2)
+    +f(.5)
+    +mxw(40%)
+    +df
+    +fdc
+    +mb($b)
+    +mr($b)
+    animation: fadein .5s
+    .bar
         +r
-    
-    .search-lay
-        +posf
-        +t(0)
-        +l(0)
-        +whs(100%)
-        +bg(transparentize($d, .9))
-    .searchbar
+        +bdr($l2)
+        +bg(transparent)
+        +p($b025 $b)
+        +h($b2)
+        +mb($b)
+        +mnw($b2)
         +noout
-        +bdrn
-        +r
-        +bg(transparentize($l1, .75))
-        +p($b05)
-        // +fw(300)
-        +fs($b*.9)
-        +w(100%)
+        // +s
+        +fs($b075)
+        // +fs($b)
         &::placeholder
-            +c($d1)
-    .search-options
-        +mt($b)
+            +c($d15)
+    .results
+        // +wh(100%, 98%)
+        overflow-y: scroll  
+        +f(1)
+        +bg($l1)
+        +bdr($l2)
+        +r
+        +s
+        +p($b05*.5)
 
 .SearchOption
     +df
     +aic
-    +fs($b*.9)
-    +p($b05)
-    +bdrt
-    +r
+    +m($b05)
+    +p($b05*.5)
     +s
     +cp
-    +c($d1)
+    @for $i from 1 through 50
+        &:nth-child(#{$i})
+            animation: bubblein .15s * $i
+    animation-timing-function: cubic-bezier(.9,.1,.1,.1)
     &:hover
-        +bdr($d2)
-        .searchoption-title
-            +c($d)
-    .searchoption-icon
-        +whs($b*1.5)
-        +bg($d2)
+        // +bg($d15)
         +r
-        +mr($b075)
-    .searchoption-title
+        .search-option-title
+            +c($d)
+        .search-option-icon-svg
+            fill: $d
+    .search-option-icon, .search-option-icon-svg
+        +mr($b)
+        +whs($b)
+        +mnwhs($b)
+        fill: $d1
         +s
+    .search-option-title
+        +s
+        +oe
+        +mxw(90%)
         +c($d1)
+        +fs($b075)
+// .Search
+//     .search-panel
+//         +posf
+//         +z(20)
+//         +t(10%)
+//         +cenX
+//         +w(75%)
+//         +h(fit-content)
+//         +mxh(75%)
+//         +bg($l)
+//         +p($b)
+//         +shd
+//         +r
+    
+//     .search-lay
+//         +posf
+//         +t(0)
+//         +l(0)
+//         +whs(100%)
+//         +bg(transparentize($d, .9))
+//     .searchbar
+//         +noout
+//         +bdrn
+//         +r
+//         +bg(transparentize($l1, .75))
+//         +p($b05)
+//         // +fw(300)
+//         +fs($b*.9)
+//         +w(100%)
+//         &::placeholder
+//             +c($d1)
+//     .search-options
+//         +mt($b)
+
+// .SearchOption
+//     +df
+//     +aic
+//     +fs($b*.9)
+//     +p($b05)
+//     +bdrt
+//     +r
+//     +s
+//     +cp
+//     +c($d1)
+//     &:hover
+//         +bdr($d2)
+//         .searchoption-title
+//             +c($d)
+//     .searchoption-icon
+//         +whs($b*1.5)
+//         +bg($d2)
+//         +r
+//         +mr($b075)
+//     .searchoption-title
+//         +s
+//         +c($d1)
