@@ -1,0 +1,21 @@
+fdf
+
+send (id, path) = change item of {id}'s path to {path}
+CRTL + CLICK to select
+    [display:collection]
+    util=Selected() => [selected]
+    <Item class{+=(selected?)}> ((selected class design))
+    selected.length > 2 && [topbar] += <>Combine To New Item<>
+dragToPath ()
+    design:
+    ((original item)) scale, opacity(.8-.9)
+    ((info tag)) <>"{amount of items} item"<>
+    module:
+    useState:{ mousedown, isdrag, droppath, confirming }
+    item.mousedown => mousedown is true
+    item.mouseleave => isdrag is true; selected:[item, ...]
+    <DragInfoTag> => follow mouse client coordinates
+    window.mousedown => mousedown on item ((research)) && openDropConfirm([selected], path)
+    openDropConfirm([selected], path) => droppath = path, confirming = true
+    dragDrop([items], path) => items.forEach => send(id, path)
+    confirming && <DragConfirmation> : <>"Send {amount of items} to {path}" / <Yes => dragDrop> / <No => reset> <>

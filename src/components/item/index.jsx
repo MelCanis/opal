@@ -3,12 +3,16 @@ import "./index.sass";
 import session from "../../data/session";
 import { useEffect, useMemo, useState } from "react";
 import { deletionStore } from "../topbar/components/more";
+import useDirectoryTools, { directoryToolStore } from "../../utils/directory";
+import EventHandler from "../../utils/mousehandler";
 
 export default function Item ({title, id, icon, content, attributes, child}) {
     const { setItem, getItems, deleteItem } = session(s => s);
     const { deleting } = deletionStore(d => d);
     const [hasChildren, setHasChildren] = useState(null);
     const [children, setChildren] = useState([]);
+    const { selected, select, dragging, dropping } = directoryToolStore(s => s);
+    const { draggable } = useDirectoryTools()
 
     useMemo(() => {
         if (child) return;
@@ -17,14 +21,16 @@ export default function Item ({title, id, icon, content, attributes, child}) {
     
     if (child || hasChildren !== null) return (
         <div
-        className={
-            "Item" +
-            (hasChildren ? " has-children" : "") +
-            ((!content && !hasChildren) ? (attributes.length > 0 ? " no-content-has-attributes no-content" : " no-content") : "") + 
-            (icon ? " has-icon" : "") + (icon && !hasChildren && !content ? " only-icon" : "") +
-            (child ? " child" : "")
+        className={`Item
+            ${dragging.includes(id) ? "dragging" : ""}
+            ${dropping == id ? "dropping" : ""}
+            ${selected.includes(id) ? "selected" : ""} ${hasChildren ? "has-children" : ""}
+            ${(!content && !hasChildren) ? (attributes.length > 0 ? "no-content-has-attributes no-content" : "no-content") : ""}
+            ${icon ? "has-icon" : ""} ${icon && !hasChildren && !content ? "only-icon" : ""}
+            ${child ? "child" : ""}`
         }
-        onClick={(!child && !deleting) ? () => setItem(id) : null}
+        {...(!child && draggable(id))}
+        onClick={(!child && !deleting && dragging.length == 0) ? (e => {e.stopPropagation(); e.ctrlKey ? select(id) : setItem(id)}) : null}
         >
             {(!content && !hasChildren) && <span className="item-head">
                {icon && <img className="item-icon icon-only" src={icon} referrerPolicy="same-origin" />}
@@ -34,7 +40,7 @@ export default function Item ({title, id, icon, content, attributes, child}) {
             {(content || hasChildren) && <>
             {title && <div className={"item-top" + (icon ? " with-icon" : "")}>
                 <div className="left">
-                {icon && <img className="item-icon" src={icon} referrerPolicy="same-origin" />}
+                {icon && <img className="item-icon" src={icon} referrerPolicy="same-origin" draggable="false"/>}
                     <div className="title">{title}</div>
                 </div>
                 {!child && <div className="right">

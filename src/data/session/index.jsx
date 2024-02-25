@@ -21,6 +21,7 @@ const session = create((set, get) => ({
     findAll: findAll,
 
     set: (x) => set(s => x),
+    set2: x => set(s => ({...s, ...x})),
     setRealm: x => {
         set(s => ({ updated: false }));
         find(get().user, "realms", x).then(y => set(s => ({ realm: y, display: "grid", item: null, updated: true })))
@@ -53,16 +54,19 @@ const session = create((set, get) => ({
     },
 
     changeItem: (x, y) => set(s => ({item: {...get().item, [x]: y}})),
-    saveItem: x => update(get().user, "items", x, get().item), 
+    saveItem: (x, y) => update(get().user, "items", x, y?y:get().item), 
     createItem: x => {
-        const newItem = new Item(get().realm.id, get().item? get().item.id : null, "", "", "");
+        const newItem = new Item(get().realm.id, get().item? get().item.id : null, x ? x : "", "", "");
         if (get().item?.template.length > 0) newItem.attributes = get().item.template.map(i => ({...i, content: ""}));
         update(get().user, "items", newItem.id, convert(newItem));
+        if (x) return {
+            id: newItem.id
+        }
         get().setItem(newItem.id);
     },
-    deleteItem: x => {
+    deleteItem: (x, multiple) => {
         set(s => ({updated: false}));
-        recursiveDeletion(x).then(y => setTimeout(set(s => ({ updated: true })), 200));
+        recursiveDeletion(x).then(y => !multiple && setTimeout(set(s => ({ updated: true })), 200));
         async function recursiveDeletion(id) {
             deletion(get().user, "items", id);
             let items = await get().getItems(id);

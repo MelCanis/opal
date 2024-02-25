@@ -1,5 +1,7 @@
 import { EyeIcon, FilterIcon } from "../../assets/icons";
 import session from "../../data/session";
+import Combine from "./components/buttons/combine";
+import DeleteFromTopbar from "./components/buttons/delete";
 import More from "./components/more";
 import Path from "./components/path";
 import Title from "./components/title";
@@ -18,6 +20,8 @@ export default function Topbar () {
             <div className="right">
                 {/* <FilterIcon />
                 <EyeIcon /> */}
+                <Combine />
+                <DeleteFromTopbar />
                 <More />
             </div>
         </div>

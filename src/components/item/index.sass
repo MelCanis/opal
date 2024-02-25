@@ -14,6 +14,9 @@
     +posr
 
 
+    img
+        pointer-events: none
+
     .child
         +shd1
         +m($b05)
@@ -112,6 +115,8 @@
         &:hover
             transform: scale(1.25)
 
+    
+
     // &:nth-of-type(2)
     //     +bdr($a)
     //     .title
@@ -192,3 +197,26 @@
         +fs($b075)
         font-style: italic
         +c($d1)
+
+
+.selected
+    // +bdr($a, $b025)
+    &::after
+        content: " "
+        +bdrrad($b)
+        +whs(99%)
+        // +bg(blue)
+        +cen
+        +bdr($a, $b025)
+
+.dragging
+    transform: scale(.8)
+    opacity: .6
+.dropping
+    &::after
+        content: " "
+        +bdrrad($b)
+        +whs(99%)
+        // +bg(blue)
+        +cen
+        +bdr($a0, $b025)
