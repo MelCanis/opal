@@ -1,13 +1,14 @@
-import { useEffect, useMemo, useRef, useState } from "react"
+import { useMemo, useRef, useState } from "react"
 import "./index.sass"
 import { randomNumberBetween  } from "../../../utils/math";
 import Environment from "../../../utils/hooks/environment";
 import session from "../../../data/session";
+import { useNavigate } from "react-router-dom";
 
 function Dot ({title, id, callback}) {
-    const { setItem } = session(s => s);
     const [wasDrag, setWasDrag] = useState({mousedown: false, was: false});
     const style = useRef({ top: randomNumberBetween(10, 90) + "%", left: randomNumberBetween(10, 90) + "%" });
+    const navigate = useNavigate()
     return (
         <div className="dot"
             style={style.current}
@@ -16,7 +17,7 @@ function Dot ({title, id, callback}) {
                 setWasDrag(s => ({ ...s, mousedown: true, }))
             }}
             onMouseUp={e => {
-                !wasDrag.was && setItem(id);
+                !wasDrag.was && navigate(`/${id}`);
                 setWasDrag(s => ({mousedown: false, was: false}))
             }}
             onMouseMove={e => {

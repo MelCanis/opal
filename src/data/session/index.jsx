@@ -22,34 +22,38 @@ const session = create((set, get) => ({
 
     set: (x) => set(s => x),
     set2: x => set(s => ({...s, ...x})),
-    setRealm: x => {
+    setRealm: (x, isobject) => {
         set(s => ({ updated: false }));
+        if (isobject) {
+            get().set2({realm: x, updated: true})
+            return
+        }                                                   
         find(get().user, "realms", x).then(y => set(s => ({ realm: y, display: "grid", item: null, updated: true })))
     },
     openRealms: x => set(s => ({display: "realm", realm: null, item: null, realmedit: false, editing: false})),
     saveRealm: x => update(get().user, "realms", x, get().realm),
     getRealm: async x => { const y = await find(get().user, "realms", x); return y; },
-    getRealms: async x => {const y = await findAll(get().user, "realms"); return y; },
+    getRealms: async x => { const y = await findAll(get().user, "realms"); return y; },
     changeRealm: (x, y) => set(s => ({ realm: { ...get().realm, [x]: y }})),
     createRealm: () => {
         const newRealm = new Realm();
         set(s => ({realmedit: true, realm: convert(newRealm)}));
     },
-
-    setItem: async x => {
+    setItem: async (x, isobj) => {
         get().item && get().saveItem(get().item.id);
         set(s => ({updated: false}));
         if (!x) { set(s => ({ display: "grid", item: x, updated: true })); return; }
-        const item = await find(get().user, "items", x), items = await get().getItems(x);
+        const item = isobj ? x : await find(get().user, "items", x); const items = await get().getItems(isobj ? x.id : x, item.realm);
         set(s => ({ display: items.length > 0 ? "grid" : "editor", item: item, updated: true }));
     },
     getItem: async x => { const y = await find(get().user, "items", x); return y; },
-    getItems: async (x, all) => {
+    getItems: async (x, realmid, all) => {
         if (all) {
             const y = await findAll(get().user, "items", "realm", x);
             return y;
         }
-        const y = x ? await findAll2(get().user, "items", "parent", x, "realm", get().realm.id) : await findAll2(get().user, "items", "parent", null, "realm", get().realm.id);
+        const rid = realmid ? realmid : get().realm.id
+        const y = await findAll2(get().user, "items", "parent", x ? x : null, "realm", rid)
         return y;
     },
 
@@ -86,6 +90,21 @@ const session = create((set, get) => ({
     refresh: x => {
         set(s => ({ updated: false }));
         setTimeout(_ => set(s => ({ updated: true })), 100);
+    },
+
+    authid: async x => {
+        get().set2({ updated: false })
+        const doc = await get().getItem(x) || await get().getRealm(x)
+        if (doc.realm) { //is type item?
+            if (!get().realm) {
+                const realm = await get().getRealm(doc.realm)
+                get().setRealm(realm, true)
+            }
+            get().setItem(doc, true)
+        } else {
+            !get().realm && get().setRealm(doc, true)
+            get().setItem(false)
+        }
     },
 }))
 

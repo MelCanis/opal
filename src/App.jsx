@@ -1,6 +1,5 @@
 import session from "./data/session"
 import Attributes from "./components/attributes"
-import Drawer from "./components/drawer"
 import Search from "./components/search"
 import Sidebar from "./components/sidebar"
 import Topbar from "./components/topbar"
@@ -8,43 +7,46 @@ import Collection from "./pages/display/collection"
 import Editor from "./pages/display/editor"
 import RealmDisplay from "./pages/realm"
 import SignIn from "./pages/signin"
-import { useMemo } from "react"
+import { useMemo} from "react"
 import { getUser } from "./data/local"
 import { checkUser } from "./data/firebase/firestore"
-import { OpalIcon } from "./assets/icons"
 import Thought from "./pages/display/thought"
+import { BrowserRouter, Navigate, Route, Routes, useLocation } from "react-router-dom"
+import Auth from "./utils/auth"
 
 function App() {
-
-  const { signedin, display, thoughtspace, item, attributes, search, updated, set } = session(s => s);
+  const { signedin, display, thoughtspace, item, attributes, search, updated, set, set2 } = session(s => s);
   useMemo(() => {
-    getUser() && checkUser(getUser()).then(x => set({user: x, signedin: true, display: "realm"}));
+    getUser() && checkUser(getUser()).then( x=> set({user: x, signedin: true, display: "realm"}));
+    window.location.pathname == "realms" && set2({display: "realm"})
   }, [signedin]);
 
-  return (
-    display == "signin" || (!getUser() && !signedin) ? <SignIn /> :
-    <>
+
+  return (<>
+    <BrowserRouter>
     <div className="exo">
       {display != "loading" && <Sidebar />}
-      {display !=  "realm" && display != "loading" && <Topbar />}
+      {display != "realm" && display != "loading" && <Topbar />}
     </div>
-    {display == "loading" && <OpalIcon className="loading" />}
-    {<div className={"main" + (display != "realm" ? " main-app" : "")}>
-      {updated && display == "realm" && <RealmDisplay />}
-      {display != "realm" && <>
-        {search && <Search />}
+    <Routes>
+      <Route exact path="/" element={(!getUser() && !signedin) ? <Navigate to="/login" /> : <Navigate to="/realms" />}/>
+      <Route exact path="/login" element={(!getUser() && !signedin) ? <SignIn /> : <Navigate to="/realms" />}/>
+      <Route exact path="/realms" element={updated && display == "realm" && <RealmDisplay />} />
+      <Route exact path="/:item" element={<div className={"main" + (display != "realm" ? " main-app" : "")}>
+        <Auth />
+        {updated && search && <Search />}
         {updated && <>
           {item && attributes && <Attributes />}
           {display == "grid" && <>
-            {thoughtspace && <Thought/>}
+            {thoughtspace && <Thought />}
             {!thoughtspace && <Collection />}
           </>}
           {display == "editor" && <Editor />}
         </>}
-        {/* <Drawer /> */}
-      </>}
-    </div>}
-    </>
+      </div>}/>
+    </Routes>
+    </BrowserRouter>
+  </>
   )
 }
 

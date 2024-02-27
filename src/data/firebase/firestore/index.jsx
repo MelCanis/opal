@@ -1,4 +1,4 @@
-import { getFirestore, collection, addDoc, getDocs, getDoc, doc, setDoc, query, where, deleteDoc } from "firebase/firestore";
+import { getFirestore, collection, getDocs, getDoc, doc, setDoc, query, where, deleteDoc } from "firebase/firestore";
 import { app } from "..";
 
 import { addUser, checkUser } from "./user";

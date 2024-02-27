@@ -63,6 +63,12 @@ export default function useDrag () {
        
         target.style.top = top + changepercentage.y + "%";
         target.style.left = left + changepercentage.x + "%";
+        // const move = anime({
+        //     targets: target,
+        //     top: top + changepercentage.y + "%",
+        //     left: left + changepercentage.x + "%",
+        //     easing: "easeInQuad"
+        // })
     }
 
     return { drag: drag }

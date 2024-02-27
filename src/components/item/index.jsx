@@ -5,9 +5,11 @@ import { useEffect, useMemo, useState } from "react";
 import { deletionStore } from "../topbar/components/more";
 import useDirectoryTools, { directoryToolStore } from "../../utils/directory";
 import EventHandler from "../../utils/mousehandler";
+import { useNavigate } from "react-router-dom";
 
 export default function Item ({title, id, icon, content, attributes, child}) {
     const { setItem, getItems, deleteItem } = session(s => s);
+    const navigate = useNavigate()
     const { deleting } = deletionStore(d => d);
     const [hasChildren, setHasChildren] = useState(null);
     const [children, setChildren] = useState([]);
@@ -30,7 +32,7 @@ export default function Item ({title, id, icon, content, attributes, child}) {
             ${child ? "child" : ""}`
         }
         {...(!child && draggable(id))}
-        onClick={(!child && !deleting && dragging.length == 0) ? (e => {e.stopPropagation(); e.ctrlKey ? select(id) : setItem(id)}) : null}
+        onClick={(!child && !deleting && dragging.length == 0) ? (e => {e.stopPropagation(); e.ctrlKey ? select(id) : /* setItem(id) */ navigate(`/${id}`)}) : null}
         >
             {(!content && !hasChildren) && <span className="item-head">
                {icon && <img className="item-icon icon-only" src={icon} referrerPolicy="same-origin" />}

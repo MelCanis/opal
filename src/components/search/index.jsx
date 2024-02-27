@@ -3,11 +3,13 @@ import { items } from "../../fakedata";
 import { useMemo, useState } from "react";
 import { DoorIcon } from "../../assets/icons";
 import session from "../../data/session";
+import { useNavigate } from "react-router-dom";
 
 function SearchOption ({ title, icon, id }) {
     const { setItem } = session(s => s);
+    const navigate = useNavigate()
     return (
-        <div className="SearchOption" onClick={e => setItem(id)}>
+        <div className="SearchOption" onClick={e => /* setItem(id) */ navigate(`/${id}`)}>
             
             {/* <div className="searchoption-icon">
                 
@@ -26,6 +28,7 @@ export default function Search () {
         getItems(realm.id, true).then(x => setItems(i => x));
     }, [item, realm]);
     const [ query, setQuery ] = useState("");
+    const navigate = useNavigate()
 
     return (
         // <div className="Search">
@@ -44,7 +47,8 @@ export default function Search () {
             onKeyDown={({ key, target }) => {
                 if (key.toLowerCase() == "enter") {
                     const id = items.filter(i => i.title.trim() != "" && i.title.toLowerCase().includes(query))[0].id;
-                    setItem(id);
+                    // setItem(id);
+                    navigate(`/${id}`)
                     setQuery("");
                     target.value = "";
                 }

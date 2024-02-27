@@ -3,6 +3,7 @@ import { AttributeIcon, BoxIcon, DoorIcon, DoorOpenIcon, GearIcon, GridIcon, Log
 import session from "../../data/session";
 import "./index.sass";
 import { removeUser } from "../../data/local";
+import { useNavigate } from "react-router-dom";
 
 function GlowIcon ({onClick, Svg, s, opalicon}) {
     return (
@@ -15,11 +16,12 @@ function GlowIcon ({onClick, Svg, s, opalicon}) {
 
 function RealmOptions ({realms, closeCallback}) {
     const { getRealms, realm, setRealm } = session(s => s);
+    // const navigate = useNavigate()
     return (
         <div className="RealmOptions">
             <div className="realm-option-bridge"></div>
             {realms?.filter(({id}) => id != realm.id).map((i, n) => <div key={n} className={i.icon? "realm-option" : "realm-option-no-icon"} 
-            onClick={() => {setRealm(i.id); closeCallback();}}>
+                onClick={() => {closeCallback();}}>
                 {(i.icon ? <img src={i.icon} alt="" className="realm-option-icon" referrerPolicy="same-origin" /> :
                <div className="realm-option-icon-empty"><RealmIcon /></div>)}
                <div className="realm-option-title">{i.title}</div>
@@ -29,7 +31,7 @@ function RealmOptions ({realms, closeCallback}) {
 }
 
 function SettingsMenu () {
-    const { set } = session(s => s);
+    const { set, user } = session(s => s);
     return (
         <div className="SettingsMenu">
             <div className="settingsmenu-bridge"></div>
@@ -49,9 +51,10 @@ function SettingsMenu () {
 
 
 export default function Sidebar () {
-    const { set, display, thoughtspace, openRealms, getRealms, createItem, item, attributes, search } = session(s => s);
+    const { set, set2, display, thoughtspace, openRealms, getRealms, createItem, item, attributes, search } = session(s => s);
     const [close, setClose] = useState(false);
     const [realms, setRealms] = useState([]);
+    const navigate = useNavigate()
     useMemo(() => {
         getRealms().then(x => setRealms(x));
     }, [])
@@ -67,7 +70,7 @@ export default function Sidebar () {
                 <>
                 {search ? <SearchIcon className="searching" onClick={e => set({ search: !search })} /> : <GlowIcon Svg={SearchIcon} s={true} onClick={e => set({search: !search})}/>}
                 <span className="realm-icon-shield">
-                    <RealmIcon onClick={openRealms} className="realm-icon icon-inactive"/>
+                    <RealmIcon onClick={_ => {navigate("/realms"); set2({display: "realm"})}} className="realm-icon icon-inactive"/>
                     {!close && realms.length > 1 && <RealmOptions realms={realms} closeCallback={closeRealmOptions} />}
                 </span>
                 </>

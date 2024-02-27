@@ -1,0 +1,18 @@
+routes
+
+home
+login
+realms
+[id]
+
+(
+use route to determine item
+use session storage to change item data & reduce firebase calls
+use firebase to store data
+)
+
+when you change item / realm    change item parameter in route
+when you load the page
+  test item || realm
+  realm && set item to false, realm to parameter
+  item && set item to parameter, set realm to item's realm
