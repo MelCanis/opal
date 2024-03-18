@@ -1,4 +1,4 @@
-import { MoreIcon, OpalIcon, XIcon } from "../../assets/icons";
+import { Check2Icon, MoreIcon, OpalIcon, XIcon } from "../../assets/icons";
 import "./index.sass";
 import session from "../../data/session";
 import { useEffect, useMemo, useState } from "react";
@@ -58,7 +58,7 @@ export default function Item ({title, id, icon, content, attributes, child}) {
             </>}
             {attributes.length > 0 && <div className="item-attributes">
                 {attributes.map((i, n) => <span key={n} className="item-attribute">
-                    <span className="item-attribute-content">{i.content}</span>
+                    <span className="item-attribute-content">{i.type == "checkbox" ? <Check2Icon className={!i.content && "unchecked"}/> :i.content}</span>
                     <span className="item-attribute-title">{i.title}</span>
                 </span>)}
             </div>}

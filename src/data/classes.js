@@ -25,3 +25,26 @@ export class Attribute {
         this.content = content;
     }
 }
+
+export class Secondary {
+    tags = []
+    display = null
+    view = null
+}
+
+
+export class Tag {
+    id = uuid();
+    color = 'grey'
+    items = null
+    filter = null
+    constructor (title) {
+        this.title = title
+    }
+}
+
+export class Filter {
+   attribute
+   filter
+   value
+}

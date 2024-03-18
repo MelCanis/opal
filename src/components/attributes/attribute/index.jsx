@@ -7,7 +7,7 @@ export default function Attribute ({type, title, content, template, updateCallba
             <div className={"attribute-title" + (template? " template-attribute-title" : "")}>
                 {<span 
                 className="attribute-type-click-shield"
-                onClick={updateCallback("type")}
+                onClick={_ => updateCallback("type")()}
                 >
                     {type == "text" ? <TextIcon className={"attribute-type"}/> :
                     type == "number" ? <NumberIcon className={"attribute-type"}/> :
@@ -40,7 +40,8 @@ export default function Attribute ({type, title, content, template, updateCallba
                     defaultValue={content}
                     onChange={e => updateCallback("content", e.target.value)()}
                     /> :
-                    <input type="checkbox" name="" id="" />
+                    <input type="checkbox" checked={content}
+                    onChange={e => updateCallback("content", e.target.checked)()} />
                 }
                 
             </div>

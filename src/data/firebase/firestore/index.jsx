@@ -3,6 +3,23 @@ import { app } from "..";
 
 import { addUser, checkUser } from "./user";
 
+
+/*
+Better FireStore Explanation
+
+db = the database (like the first doc)
+structure goes: db > collection > doc > ... (more collections followed by docs)
+collection(docid, collectionid), doc(collectoinid, docid):
+returns a collection/doc ref if exists, create one if it doesn't
+await setDoc(collectionref, data) : updates doc data
+await getDoc(collectionref, data) : returns doc data
+
+// doc(db, "collection id", "doc id") = doc(collection())
+
+
+*/
+
+
 export function convert (x) {
     const y = JSON.stringify(x);
     return JSON.parse(y);
@@ -10,9 +27,10 @@ export function convert (x) {
 
 const db = getFirestore(app);
 
-export function update (x, y, z, a) {
+export async function update (x, y, z, a) {
     const b = doc(collection(x, y), z);
-    setDoc(b, a, {merge: true});
+    await setDoc(b, a, {merge: true});
+    return "success"
 }
 export function deletion(x, y, z) {
     const b = doc(collection(x, y), z);
@@ -36,6 +54,15 @@ export async function findAll2 (x, y, z, zz, zzz, zzzz) {
     let b = [];
     a.forEach(i => b.push(i.data()));
     return b;
+}
+
+export function newCollection (x, y, z) {
+    const users = collection(db, "users");
+    const userref = doc(users, x);
+    const newCollection = collection(userref, y)
+    const firstDoc = doc(newCollection, z);
+    return newCollection
+    // setDoc(newCollection, { ...new Realm(), id: newCollection.id });
 }
 
 

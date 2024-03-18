@@ -8,6 +8,8 @@
     +pl($b4*.8)
     +df
     +jcb
+    +bg($l0)
+    +z(4)
     .left
         +pt($b*.85)
         +df
@@ -26,15 +28,17 @@
                 +bg($d2)
 
     .button
-        +fs($b*.75)
         +mnh(max-content)
-        +p($b*.75 $b*.5)
+        +fs($b*.75)
+        +p($b*.5 $b*.25)
+        // +p(0)
         +cenc
-        +bdrrad($b05)
+        +r
         +bdr(transparent)
         +bg($d1)
+        // +bg(transparent)
         +posr
-        +t(-$b025)
+        +t($b*.1)
         +c($w)
         +cp
         +ml($b)
@@ -54,3 +58,7 @@
         +o(0)   
     100%
         +o(1)
+
+
+.DeleteFromTopbar
+    +bg($re !important)

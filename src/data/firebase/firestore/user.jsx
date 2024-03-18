@@ -2,11 +2,6 @@ import { collection, addDoc, getDocs, getDoc, doc, setDoc } from "firebase/fires
 import { Item, Realm } from "../../classes";
 import { db } from ".";
 
-function convert (x) {
-    const y = JSON.stringify(x);
-    return JSON.parse(y);
-}
-
 export async function addUser (x) {
     const users = collection(db, "users");
     const docTarget = doc(users, x.uid);

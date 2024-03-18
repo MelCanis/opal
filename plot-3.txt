@@ -1,0 +1,6 @@
+tabs
+
+split to new items
+  split by \n
+  no tab, title of new item
+  tab (4 spaces), becomes content of most recent new item

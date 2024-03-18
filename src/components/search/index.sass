@@ -10,6 +10,7 @@
     +mb($b)
     +mr($b)
     animation: fadein .5s
+    +bg($l0)
     .bar
         +r
         +bdr($l2)
@@ -19,14 +20,11 @@
         +mb($b)
         +mnw($b2)
         +noout
-        // +s
         +fs($b075)
-        // +fs($b)
         &::placeholder
             +c($d15)
     .results
-        // +wh(100%, 98%)
-        overflow-y: scroll  
+        overflow-y: scroll
         +f(1)
         +bg($l1)
         +bdr($l2)
@@ -46,7 +44,6 @@
             animation: bubblein .15s * $i
     animation-timing-function: cubic-bezier(.9,.1,.1,.1)
     &:hover
-        // +bg($d15)
         +r
         .search-option-title
             +c($d)
@@ -64,59 +61,3 @@
         +mxw(90%)
         +c($d1)
         +fs($b075)
-// .Search
-//     .search-panel
-//         +posf
-//         +z(20)
-//         +t(10%)
-//         +cenX
-//         +w(75%)
-//         +h(fit-content)
-//         +mxh(75%)
-//         +bg($l)
-//         +p($b)
-//         +shd
-//         +r
-    
-//     .search-lay
-//         +posf
-//         +t(0)
-//         +l(0)
-//         +whs(100%)
-//         +bg(transparentize($d, .9))
-//     .searchbar
-//         +noout
-//         +bdrn
-//         +r
-//         +bg(transparentize($l1, .75))
-//         +p($b05)
-//         // +fw(300)
-//         +fs($b*.9)
-//         +w(100%)
-//         &::placeholder
-//             +c($d1)
-//     .search-options
-//         +mt($b)
-
-// .SearchOption
-//     +df
-//     +aic
-//     +fs($b*.9)
-//     +p($b05)
-//     +bdrt
-//     +r
-//     +s
-//     +cp
-//     +c($d1)
-//     &:hover
-//         +bdr($d2)
-//         .searchoption-title
-//             +c($d)
-//     .searchoption-icon
-//         +whs($b*1.5)
-//         +bg($d2)
-//         +r
-//         +mr($b075)
-//     .searchoption-title
-//         +s
-//         +c($d1)

@@ -1,0 +1,52 @@
+@import "../../../styles/utils"
+
+.ContextMenu
+    +fs($b)
+    +w($b*12)
+    +h(max-content)
+    +bdr($d15)
+    +bdrrad($b05)
+    +posf
+    +bg($l1)
+    // +oh
+    box-shadow: 0 $b05 $b*2 transparentize($d, .75)
+    .Option
+        +s
+        +p($b025 $b05)
+        +df
+        +jcb
+        +aic
+        +posr
+        &:first-of-type           
+            border-top-left-radius: $b05
+            border-top-right-radius: $b05
+        &:last-of-type           
+            border-bottom-left-radius: $b05
+            border-bottom-right-radius: $b05
+        &:hover
+            +bg($d2)
+            .cm-service
+                +db
+        svg
+            fill: $d
+            +whs($b)
+        
+        .cm-service
+            +z(2)
+            // +dn
+            +bg($l1)
+            +bdr($d15)
+            +bdrrad($b05)
+            +posa
+            +t(-$b*2)
+            +l($b*12.2)
+            +h(max-content)
+            +p($b025)
+    .has-service
+        &::after
+            content: ""
+            +posa
+            +t(-$b2)
+            +l($b*11.5)
+            +wh($b2, $b2*2.25)
+            +z(1.5)

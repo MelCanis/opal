@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useState } from "react";
-import { AttributeIcon, BoxIcon, DoorIcon, DoorOpenIcon, GearIcon, GridIcon, LogoutIcon, OpalIcon, PaperIcon, PencilIcon, PlusIcon, RealmIcon, SearchIcon, ThoughtspaceIcon, WarpIcon } from "../../assets/icons";
+import { AttributeIcon, BoxIcon, DoorIcon, DoorOpenIcon, FilterIcon, GearIcon, GridIcon, LogoutIcon, OpalIcon, PaperIcon, PencilIcon, PlusIcon, RealmIcon, SearchIcon, ThoughtspaceIcon, WarpIcon } from "../../assets/icons";
 import session from "../../data/session";
 import "./index.sass";
 import { removeUser } from "../../data/local";
@@ -16,12 +16,12 @@ function GlowIcon ({onClick, Svg, s, opalicon}) {
 
 function RealmOptions ({realms, closeCallback}) {
     const { getRealms, realm, setRealm } = session(s => s);
-    // const navigate = useNavigate()
+    const navigate = useNavigate()
     return (
         <div className="RealmOptions">
             <div className="realm-option-bridge"></div>
             {realms?.filter(({id}) => id != realm.id).map((i, n) => <div key={n} className={i.icon? "realm-option" : "realm-option-no-icon"} 
-                onClick={() => {closeCallback();}}>
+                onClick={() => {navigate(`/${i.id}`); closeCallback();}}>
                 {(i.icon ? <img src={i.icon} alt="" className="realm-option-icon" referrerPolicy="same-origin" /> :
                <div className="realm-option-icon-empty"><RealmIcon /></div>)}
                <div className="realm-option-title">{i.title}</div>
@@ -51,7 +51,7 @@ function SettingsMenu () {
 
 
 export default function Sidebar () {
-    const { set, set2, display, thoughtspace, openRealms, getRealms, createItem, item, attributes, search } = session(s => s);
+    const { set, set2, display, thoughtspace, openRealms, getRealms, createItem, item, attributes, panel, search } = session(s => s);
     const [close, setClose] = useState(false);
     const [realms, setRealms] = useState([]);
     const navigate = useNavigate()
@@ -81,6 +81,7 @@ export default function Sidebar () {
                 {/* <DoorOpenIcon className="icon-smaller"/> */}
                 {display != "realm" && item && <AttributeIcon className="icon-smaller icon-inactive" onClick={() => set({attributes: !attributes})}/>}
                 {/* <BoxIcon className="icon-even-smaller icon-inactive"/> */}
+                {/* {display !== "realm" && <FilterIcon className="icon-smaller" onClick={_ => set({panel: !panel})}/>} */}
             </div>
             <div className="bottom">
                 {display != "realm" && <GlowIcon Svg={PlusIcon} onClick={() => createItem()}/>}

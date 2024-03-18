@@ -11,16 +11,17 @@ import { useMemo} from "react"
 import { getUser } from "./data/local"
 import { checkUser } from "./data/firebase/firestore"
 import Thought from "./pages/display/thought"
-import { BrowserRouter, Navigate, Route, Routes, useLocation } from "react-router-dom"
+import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom"
 import Auth from "./utils/auth"
+import Panel from "./components/panel"
+import Tools from "./components/utils/tools"
 
 function App() {
-  const { signedin, display, thoughtspace, item, attributes, search, updated, set, set2 } = session(s => s);
+  const { signedin, display, thoughtspace, item, attributes, panel, search, updated, set, set2 } = session(s => s);
   useMemo(() => {
     getUser() && checkUser(getUser()).then( x=> set({user: x, signedin: true, display: "realm"}));
     window.location.pathname == "realms" && set2({display: "realm"})
   }, [signedin]);
-
 
   return (<>
     <BrowserRouter>
@@ -36,7 +37,8 @@ function App() {
         <Auth />
         {updated && search && <Search />}
         {updated && <>
-          {item && attributes && <Attributes />}
+          {item && <Attributes />}
+          {/* {panel && <Panel/>} */}
           {display == "grid" && <>
             {thoughtspace && <Thought />}
             {!thoughtspace && <Collection />}
@@ -45,6 +47,7 @@ function App() {
         </>}
       </div>}/>
     </Routes>
+    <Tools />
     </BrowserRouter>
   </>
   )

@@ -4,32 +4,26 @@ import Attribute from "./attribute";
 import { Attribute as AttributeClass } from "../../data/classes";
 import { ImageIcon } from "../../assets/icons";
 import ImageUpload from "../image-upload";
-import { useState } from "react";
-
-
+import { useEffect, useState } from "react";
+import { ln } from "../../utils/math";
 
 export default function Attributes () {
-    const { item: { title, icon, attributes, template }, changeItem } = session(s => s);
+    const { item: { title, icon, attributes, template }, item, changeItem, set, attributes: open } = session(s => s);
     const [uploadactive, setUploadactive] = useState(false);
+    useEffect(_ => set({ attributes: item && attributes.length > 0 }), [item])
 
-    function updateAttribute (n, t) {
-        const x = !t ?
-        (o) => changeItem("attributes", attributes.map((i, nn) => nn == n ? {...i, ...o} : i)) :
-        (o) => changeItem("template", template.map((i, nn) => nn == n ? {...i, ...o} : i));
-        const y = {
-            type: !t ? () => x({type: attributes[n].type == "text" ? "number" : "text"}) :
-                    () => x({type: template[n].type == "text" ? "number" : "text"}),
-            title: (v) => x({title: v}),
-            content: (v) => x({content: v}),
-        }
-        return (x, x1) => {
-            return () => {
-                y[x](x1);
-            }
-        }
+    function updateAttribute(istemp, index) {
+        const array = item[istemp], attribute = array[index]
+        const update = x => changeItem(istemp, array.map((i, n) => n == index ? {...attribute, ...x} : i))
+        const types = ["text", "number", "checkbox"]
+        return (prop, newvalue) => _ => {let action = {
+            type: _=> update({type: types[ln(types, types.indexOf(attribute.type))]}),
+            title: _=> update({title: newvalue}),
+            content: _ => update({content: newvalue})
+        }; action[prop]()}
     }
 
-    return (
+    if (open) return (
         <div className={"Attributes attributes-small" + ((!title) ? " attributes-empty" : "")}>
             <div className="attributes-background"></div>
             <div className={"icon-input" + (attributes && !icon ? " icon-input-empty" : "")}>
@@ -47,7 +41,7 @@ export default function Attributes () {
             </div>
             <h2 className="attributes-title">{title}</h2>
             <div className="attributes">
-                {attributes.map((i, n) => <Attribute  key={n} updateCallback={updateAttribute(n)} {...i}/>)}
+                {attributes.map((i, n) => <Attribute  key={n} updateCallback={updateAttribute("attributes", n)} {...i}/>)}
             </div>
             <div className="attributes-add" onClick={()=>changeItem("attributes", [...attributes, new AttributeClass()])}>
                 <span>Add an attribute</span>
@@ -55,7 +49,7 @@ export default function Attributes () {
             </div>
             <hr className="attributes-divider"/>
             <div className="template-attributes attributes">
-                {template.map((i, n) => <Attribute template={true} key={n} updateCallback={updateAttribute(n, true)} {...i}/>)}
+                {template.map((i, n) => <Attribute template={true} key={n} updateCallback={updateAttribute("template", n)} {...i}/>)}
             </div>
             <div className="template-attributes-add attributes-add" onClick={()=>changeItem("template", [...template, {type: "text", title: ""}])}>
                 <span>Add a template attribute</span>

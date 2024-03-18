@@ -1,0 +1,52 @@
+filter tags
+
+(
+    extends from current data structure
+    modular / single responsibility
+)
+
+
+
+create a new data collection, filters
+id: item id
+data: [ filters ]
+
+objectclass FilterTag
+title: "",
+filter: null || () =>, (on startup, if filter, items = items.filter( fits criteria && item.id ))
+items: [item id's]
+color: null
+
+colors
+orange: ###
+green: ###
+blue: ###
+red: ###
+yellow: ###
+purple: ###
+
+no filters && "no filters added"
+
+filters &&
+[color] __Title__ <Filter> <x>
+...
+
+filter creation panel
+getPossibleAttributes => []
+options
+text: = x, includes x
+number: = x, < x, > x, <= x, >= x
+checkbox: x ?
+
+in thoughtspace
+color coding on && show dots as colors
+on dot hover, show tag to side
+add tags with context menu
+
+
+
+start using secondary data
+{
+    filters: [], ((are filters))
+    display: [], ((change visible item property options, & views))
+}

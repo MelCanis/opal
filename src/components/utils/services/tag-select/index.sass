@@ -1,0 +1,27 @@
+@import "../../../../styles/utils"
+
+.TagSelect
+    +w($b*6)
+    .section
+        +posr
+    .tag
+        +bdrrad($b025)
+        +p(0 $b025)
+        .left
+            +df
+            +aic
+            gap: $b025
+        .color
+            +whs($b05)
+            +bdrrad(50%)
+        +fs($b075)
+        +df
+        +jcb
+        +aic
+        +mb($b025)
+        &:hover
+            +bg($d2)
+    .noneAdded
+        +ta(center)
+        +fs($b05)
+        +p($b025)

@@ -1,0 +1,1 @@
+export const notempty = x => x.trim() != ""

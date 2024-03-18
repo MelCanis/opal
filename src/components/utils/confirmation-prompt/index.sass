@@ -1,0 +1,32 @@
+@import "../../../styles/utils"
+
+.ConfirmationPrompt
+    +posf
+    +t(0)
+    +z(25)
+    +l(0)
+    +whs(100%)
+    +bg(transparentize(#111, .8))
+    +cenc
+    .panel
+        +p($b*1.5)
+        +bg($l1)
+        +shdr
+        +r
+    .options
+        +p($b*.5)
+        +cenc
+        button
+            +m(0 $b05)
+            +r
+            +bdr($d2)
+            +fs($b)
+            +p($b05 $b)
+            +cp
+            +s
+            &:hover
+                +c($w)
+                &:first-of-type
+                    +bg($a)
+                &:last-of-type
+                    +bg($re)

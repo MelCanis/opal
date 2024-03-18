@@ -1,6 +1,7 @@
 import { useEffect, useMemo, useRef, useState } from "react";
 import "./index.sass";
 import session from "../../../data/session";
+import { enableTabToIndent } from 'indent-textarea';
 
 export default function Editor () {
     const { item: { id, content }, changeItem, saveItem } = session(s => s);
@@ -19,6 +20,9 @@ export default function Editor () {
     useMemo(_ => {
         saveItem(id)
     }, [content])
+    useEffect(_ => {
+        textarea.current && enableTabToIndent(textarea.current)
+    }, [textarea])
 
 
     return (
