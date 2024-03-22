@@ -109,6 +109,7 @@ const session = create((set, get) => ({
     authid: async x => {
         get().set2({ updated: false })
         const doc = await get().getItem(x) || await get().getRealm(x)
+        console.log(doc)
         if (doc.realm) { //is type item?
             if (!get().realm) {
                 const realm = await get().getRealm(doc.realm)

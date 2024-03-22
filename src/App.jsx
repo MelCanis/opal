@@ -33,7 +33,7 @@ function App() {
       <Route exact path="/" element={(!getUser() && !signedin) ? <Navigate to="/login" /> : <Navigate to="/realms" />}/>
       <Route exact path="/login" element={(!getUser() && !signedin) ? <SignIn /> : <Navigate to="/realms" />}/>
       <Route exact path="/realms" element={updated && display == "realm" && <RealmDisplay />} />
-      <Route exact path="/:item" element={<div className={"main" + (display != "realm" ? " main-app" : "")}>
+      <Route path="/:item" element={<div className={"main" + (display != "realm" ? " main-app" : "")}>
         <Auth />
         {updated && search && <Search />}
         {updated && <>
